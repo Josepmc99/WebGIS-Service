@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var mymap = L.map("map").setView([39.09567618381688, -0.219680134361635], 16);
 
     // Agrega una capa base, por ejemplo, una capa de OpenStreetMap
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(mymap);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 29,
+    }).addTo(mymap);
 
  //------------------------------------------- BOTÓN PARA AÑADIR MARCADORES A TRAVÉS DEL CIRCULAR MENÚ-------------------------------------------------------/
 
@@ -79,109 +81,47 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //------------------------------------------- CONTROL LAYER -------------------------------------------------------/
   
-    //CAPAS PRINCIPALES
+    // -----------CAPAS PRINCIPALES-----------
     
-    // CAPAS SECUNDARIAS.
-    var sub_capa1 = L.layerGroup(); 
-    var sub_capa2 = L.layerGroup();
-    var sub_capa3 = L.layerGroup();
-    var sub_capa4 = L.layerGroup();
-    var sub_capa5 = L.layerGroup();
-    var sub_capa6 = L.layerGroup();
+    // -----------CAPAS SECUNDARIAS-----------
 
-    //Agregar Geojson
-    var sub_capa1 = L.geoJSON(playa2017,{
-        onEachFeature: function(feature,layer){
-            layer.bindPopup('<b>Superficie de playa en </b>' + feature.properties.Year)
-        },
-        style:{
-            fillColor: '#896d5d',
-            fillOpacity:0.7,
-            color: 'none'
-        }
+    var wmsL_C_2017 = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
+        layers: "Proyecto_Costas:L_C_2017",
+         maxZoom: 29,
+    });
+    
+    var wmsL_C_2022 = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
+        layers: "Proyecto_Costas:L_C_2022",
+        maxZoom: 29,
+    });
+    
+    var wmsEdif = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
+        layers: "Proyecto_Costas:Edif",
+        maxZoom: 29,
+    });
+    
+    var wmsErosion = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
+        layers: "Proyecto_Costas:perdida_ganancia",
+        maxZoom: 29,
     });
 
-    var sub_capa2 = L.geoJSON(playa2022,{
-        onEachFeature: function(feature,layer){
-            layer.bindPopup('<b>Superficie de playa en </b>' + feature.properties.Year)
-        },
-        style:{
-            fillColor: '#896d5d',
-            fillOpacity:0.7,
-            color: 'none'
-        }
+    var wmsPrediction30years = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
+        layers: "Proyecto_Costas:prediction_30_years",
+        maxZoom: 29,
     });
 
-    var sub_capa3 = L.geoJSON(perdida_ganancia,{
-        onEachFeature: function(feature,layer){
-            layer.bindPopup(feature.properties.Cambios + '<b> de arena </b>')
-        },
-        style: function(feature) {
-            var columna = feature.properties.Cambios;
-    
-            //Asignar colores según categoría
-            var fillColor = columna === 'Pérdida' ? 'red' : 'green';
-            var fillOpacity = 0.4;
-            var color = 'none';
-    
-            return {
-                fillColor: fillColor,
-                fillOpacity: fillOpacity,
-                color: color
-            };
-        }
-    });
-
-    var sub_capa4 = L.geoJSON(prediction30years,{
-        onEachFeature: function(feature,layer){
-            layer.bindPopup('<a>Zona Inundable </a>')
-        },
-        style:{ 
-            fillColor: 'red',
-            fillOpacity: 0.2,
-            color: 'red',   
-            weight: 0.2,
-        }
-    });
-
-    var sub_capa5 = L.geoJSON(edif, {
-        onEachFeature: function(feature, layer) {
-            layer.bindPopup('<b> Valor económico </b>' + feature.properties.Valor);
-        },
-        style: function(feature) {
-            var columna1 = feature.properties.Valor;
-    
-            // Asignar colores según categoría
-            var fillColor;
-            if (columna1 === 'Alto') {
-                fillColor = 'red';
-            } else if (columna1 === 'Medio') {
-                fillColor = 'yellow';
-            } else if (columna1 === 'Bajo') {
-                fillColor = 'green';
-            } else {
-                fillColor = 'gray'; // Color por defecto para otros valores
-            }
-            
-            var fillOpacity = 0.4;
-            var color = 'none';
-    
-            return {
-                fillColor: fillColor,
-                fillOpacity: fillOpacity,
-                color: color
-            };
-        }
-    });
-
-    //Capa base WMS Ortofoto 2022
-    var sub_capa6 = L.tileLayer.wms("https://terramapas.icv.gva.es/0202_2022CVAL0025", {
+    // -----------CAPAS BASE-----------
+        
+    //Ortofoto 2022
+    var orto2022 = L.tileLayer.wms("https://terramapas.icv.gva.es/0202_2022CVAL0025", {
         maxZoom: 25,
         layers: "2022CVAL0025_RGB",
         format: "image/png",
         transparent: true,
         attribution: "Atribución de la capa WMS"
     });
+
+    // -----------AJUSTES LAYER CONTROL-----------
 
      // Obtén el checkbox de la Capa 1
     var checkboxCapa1 = document.querySelector(".dropdown_list input[type='checkbox']");
@@ -202,71 +142,72 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-        var sub_capa1Visible = false; // Variable para rastrear si la capa 1 está visible
-        var sub_capa2Visible = false;
-        var sub_capa3Visible = false;
-        var sub_capa4Visible = false;
-        var sub_capa5Visible = false;
-        var sub_capa6Visible = false;
+        var wmsL_C_2017Visible = false;
+        var wmsL_C_2022Visible = false;
+        var wmsEdifVisible = false;
+        var wmsErosionVisible = false;
+        var wmsPrediction30yearsVisible = false;
+        var orto2022Visible = false;
+
 
     document.querySelector(".sub_capa1").addEventListener("click", function () {
         // Cambia la visibilidad de la capa 1 cuando se hace clic en el menú
-        if (sub_capa1Visible) {
-            mymap.removeLayer(sub_capa1);
+        if (wmsL_C_2017Visible) {
+            mymap.removeLayer(wmsL_C_2017);
         } else {
-            mymap.addLayer(sub_capa1);
+            mymap.addLayer(wmsL_C_2017);
         }
-        sub_capa1Visible = !sub_capa1Visible;
+        wmsL_C_2017Visible = !wmsL_C_2017Visible;
     });
 
     document.querySelector(".sub_capa2").addEventListener("click", function () {
         // Cambia la visibilidad de la capa 2 cuando se hace clic en el menú
-        if (sub_capa2Visible) {
-            mymap.removeLayer(sub_capa2);
+        if (wmsL_C_2022Visible) {
+            mymap.removeLayer(wmsL_C_2022);
         } else {
-            mymap.addLayer(sub_capa2);
+            mymap.addLayer(wmsL_C_2022);
         }
-        sub_capa2Visible = !sub_capa2Visible;
+        wmsL_C_2022Visible = !wmsL_C_2022Visible;
     });
 
     document.querySelector(".sub_capa3").addEventListener("click", function () {
         // Cambia la visibilidad de la capa 2 cuando se hace clic en el menú
-        if (sub_capa3Visible) {
-            mymap.removeLayer(sub_capa3);
+        if (wmsErosionVisible) {
+            mymap.removeLayer(wmsErosion);
         } else {
-            mymap.addLayer(sub_capa3);
+            mymap.addLayer(wmsErosion);
         }
-        sub_capa3Visible = !sub_capa3Visible;
+        wmsErosionVisible = !wmsErosionVisible;
     });
 
     document.querySelector(".sub_capa4").addEventListener("click", function () {
         // Cambia la visibilidad de la capa 2 cuando se hace clic en el menú
-        if (sub_capa4Visible) {
-            mymap.removeLayer(sub_capa4);
+        if (wmsEdifVisible) {
+            mymap.removeLayer(wmsEdif);
         } else {
-            mymap.addLayer(sub_capa4);
+            mymap.addLayer(wmsEdif);
         }
-        sub_capa4Visible = !sub_capa4Visible;
+        wmsEdifVisible = !wmsEdifVisible;
     });
 
     document.querySelector(".sub_capa5").addEventListener("click", function () {
         // Cambia la visibilidad de la capa 2 cuando se hace clic en el menú
-        if (sub_capa5Visible) {
-            mymap.removeLayer(sub_capa5);
+        if (wmsPrediction30yearsVisible) {
+            mymap.removeLayer(wmsPrediction30years);
         } else {
-            mymap.addLayer(sub_capa5);
+            mymap.addLayer(wmsPrediction30years);
         }
-        sub_capa5Visible = !sub_capa5Visible;
+        wmsPrediction30yearsVisible = !wmsPrediction30yearsVisible;
     });
 
     document.querySelector(".sub_capa6").addEventListener("click", function () {
         // Cambia la visibilidad de la capa 2 cuando se hace clic en el menú
-        if (sub_capa6Visible) {
-            mymap.removeLayer(sub_capa6);
+        if (orto2022Visible) {
+            mymap.removeLayer(orto2022);
         } else {
-            mymap.addLayer(sub_capa6);
+            mymap.addLayer(orto2022);
         }
-        sub_capa6Visible = !sub_capa6Visible;
+        orto2022Visible = !orto2022Visible;
     });
     
 });
