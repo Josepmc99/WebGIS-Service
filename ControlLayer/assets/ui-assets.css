@@ -1,0 +1,64 @@
+element.style {
+}
+.assets {
+    height: 100%;
+    display: block;
+    width: 0;
+    -webkit-transition: padding .5s ease;
+    transition: padding .5s ease;
+    will-change: contents;
+    padding-bottom: 15px;
+}
+
+.assets .ui-base-layers {
+    padding: 10px;
+    border-radius: 31px;
+    margin: 4px;
+    width: 36px;
+    padding: 10px 5px;
+}
+.ui-base-layers, .ui-base-layers {
+    color: #6e7885;
+    background-color: #fff;
+    -webkit-box-shadow: var(--none,0 1px 3px rgba(0,0,0,.12),0 2px 6px rgba(0,0,0,.24));
+    box-shadow: var(--none,0 1px 3px rgba(0,0,0,.12),0 2px 6px rgba(0,0,0,.24));
+}
+.ui-base-layers .button {
+    padding: 0.78571429em 0.78571429em 0.78571429em;
+}
+.buttons .or {
+    font-size: 1rem;
+}
+.ui.button {
+    cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+    background: #e0e1e2 none;
+    color: rgba(0,0,0,.6);
+    font-family: Mulish,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    margin: 0 0.25em 0 0;
+    padding: 0.78571429em 1.5em 0.78571429em;
+    text-transform: none;
+    text-shadow: none;
+    font-weight: 700;
+    line-height: 1em;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.28571429rem;
+    -webkit-box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgba(34,36,38,.15) inset;
+    box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgba(34,36,38,.15) inset;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: opacity .1s ease,background-color .1s ease,color .1s ease,background .1s ease,-webkit-box-shadow .1s ease;
+    transition: opacity .1s ease,background-color .1s ease,color .1s ease,background .1s ease,-webkit-box-shadow .1s ease;
+    transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;
+    transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease,-webkit-box-shadow .1s ease;
+    will-change: '';
+    -webkit-tap-highlight-color: transparent;
+}

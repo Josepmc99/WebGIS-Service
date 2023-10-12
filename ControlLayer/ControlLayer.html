@@ -10,13 +10,6 @@
     <link rel="stylesheet" type="text/css" href="curcular_menu/circular_menu.css">
     <link rel="stylesheet" href="loadfile/loadfile.css" />
     <title>Leaflet Control Layer</title>
-    
-    <script src="/ControlLayer/prueba_capas/Playa_2017.js"></script>
-    <script src="/ControlLayer/prueba_capas/Playa_2022.js"></script>
-    <script src="/ControlLayer/prueba_capas/perdida-ganancia.js"></script>
-    <script src="/ControlLayer/prueba_capas/prediction30years.js"></script>
-    <script src="/ControlLayer/prueba_capas/edif.js"></script>
-    <script src="/ControlLayer/prueba_capas/intrusión_marina.js"></script>
 
     <!-- Cargar Leaflet -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
@@ -28,149 +21,250 @@
     <script src="/ControlLayer/lib/L.Geoserver.js"></script>
 
 </head>
-    <!--===================================================
-                      TOGGLE MENÚ               
-    ===================================================-->
-    <div class="menu-toggle">
-        <div class="menu">
-            <div class="toggle"><ion-icon name="add-outline"></ion-icon></div>
-            <li style="--i:0;">
-                <a href="#" id="zoomButton" class="active-option"><ion-icon name="home-outline"></ion-icon></a>
-            </li>
-            <li style="--i:1;">
-                <a href="#" id="LayerControl" class="active-option"><ion-icon name="layers-outline"></ion-icon></a>
-            </li>
-            <li style="--i:2;">
-                <a href="#" id="location-icon" class="active-option"><ion-icon name="location-outline"></ion-icon></a>
-            </li>
-            <li style="--i:3;">
-                <a href="#" class="active-option"><ion-icon name="brush-outline"></ion-icon></a>
-            </li>
-            <li style="--i:4;">
-                <a href="#" class="active-option"><ion-icon name="color-palette-outline"></ion-icon></a>
-            </li>
-            <li style="--i:5;">
-                <a href="#" class="active-option"><ion-icon name="options-outline"></ion-icon></ion-icon></a>
-            </li>
-            <li style="--i:6;">
-                <a href="#" id="cloud-upload-button" class="active-option"><ion-icon name="cloud-upload-outline"></ion-icon></a>
-            </li>
-            <li style="--i:7;">
-                <a href="#" class="active-option"><ion-icon name="settings-outline"></ion-icon></a>
-            </li>
-        </div>
+    <div class="map-assets">
         <!--===================================================
-                      LAYER CONTROL               
+                        TOGGLE MENÚ               
         ===================================================-->
-        <nav class="nav">
-
-            <nav class="nav_container">
-
-                <h1 class="nav_title">Web.GIS - Service.maps</h1>
-
-                <a href="#menu" class="nav_menu">
-                    <img src="/ControlLayer/assets/menu.svg" class="nav_icon">        
-                </a>
-
-                <a href="#" class="nav_menu nav_menu--second">
-                    <img src="/ControlLayer/assets/close.svg" class="nav_icon">        
-                </a>
-
-                <ul class="dropdown" id="menu">
-                    <li class="dropdown_list">
-                        <a href="#" class="dropdown_link">
-                            <img src="./assets/house.svg" class="dropdown_icon">
-                            <span class="dowpdown_span">Inicio</span>
-                        </a>
-                    </li>
-                    <li class="dropdown_list">
-                        <a href="#" class="dropdown_link">
-                            <img src="./assets/projects.svg" class="dropdown_icon">
-                            <span class="dropdown_span" aria-current="true">Capa 1</span>
-                            <img src="./assets/down.svg" class="dropdown_arrow">
-
-                            <input type="checkbox" class="dropdown_check">
-                        </a>
-
-                        <div class="dropdown_content">
-                            <ul class="dropdown_sub">
-                                <li class="dropdown_li">
-                                    <a href="#" class="sub_capa1 dropdown_anchor">
-                                        <span>Línea de Costa 2017</span>
-                                        <input type="checkbox" class="dropdown_sub_check">
-                                    </a>
-                                </li>
-                                <li class="dropdown_li">
-                                    <a href="#" class="sub_capa2 dropdown_anchor">
-                                        <span>Línea de Costa 2022</span>
-                                        <input type="checkbox" class="dropdown_sub_check">
-                                    </a>
-                                </li>
-                                <li class="dropdown_li">
-                                    <a href="#" class="sub_capa3 dropdown_anchor">
-                                        <span for="check">Pérdida / Ganancia </span>
-                                        <input type="checkbox" class="dropdown_sub_check">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="dropdown_list">
-                        <a href="#" class="dropdown_link">
-                            <img src="./assets/projects.svg" class="dropdown_icon">
-                            <span class="dowpdown_span">Capa 2</span>
-                            <img src="./assets/down.svg" class="dropdown_arrow">
-
-                            <input type="checkbox" class="dropdown_check">
-                        </a>
-
-                        <div class="dropdown_content">
-                            <ul class="dropdown_sub">
-                                <li class="dropdown_li">
-                                    <a href="#" class="sub_capa4 dropdown_anchor">
-                                        <span>Vulnerabilidad de los edificios</span>
-                                        <input type="checkbox" class="dropdown_sub_check">
-                                    </a>
-                                </li>
-                                <li class="dropdown_li">
-                                    <a href="#" class="sub_capa5 dropdown_anchor">
-                                        <span>Predicción 30 años</span>
-                                        <input type="checkbox" class="dropdown_sub_check">
-                                    </a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li> <!-- Para agregar una linia divisoria dentro del dropdown-->
-                                <li class="dropdown_li">
-                                    <a href="#" class="sub_capa6 dropdown_anchor">
-                                        <span>Ortofoto 2022</span>
-                                        <input type="checkbox" class="dropdown_sub_check">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-
-            </nav>
-        </nav>
-        <!--===================================================
-                      DROP-FILE                
-        ===================================================-->
-        <div>
-            <div class="drop-area">
-                <h2>Arrastra/suelta el archivo</h2>
-                <span>o</span>
-                <button>Selecciona tu archivo</button>
-                <input type="file" id="input-file" accept=".geojson, .kml" hidden multiple />
+        <div class="menu-toggle">
+            <div class="menu">
+                <div class="toggle"><ion-icon name="add-outline"></ion-icon></div>
+                <li style="--i:0;">
+                    <a href="#" id="zoomButton" class="active-option"><ion-icon name="home-outline"></ion-icon></a>
+                </li>
+                <li style="--i:1;">
+                    <a href="#" id="LayerControl" class="active-option"><ion-icon name="layers-outline"></ion-icon></a>
+                </li>
+                <li style="--i:2;">
+                    <a href="#" id="location-icon" class="active-option"><ion-icon name="location-outline"></ion-icon></a>
+                </li>
+                <li style="--i:3;">
+                    <a href="#" class="active-option"><ion-icon name="brush-outline"></ion-icon></a>
+                </li>
+                <li style="--i:4;">
+                    <a href="#" class="active-option"><ion-icon name="color-palette-outline"></ion-icon></a>
+                </li>
+                <li style="--i:5;">
+                    <a href="#" class="active-option"><ion-icon name="options-outline"></ion-icon></ion-icon></a>
+                </li>
+                <li style="--i:6;">
+                    <a href="#" id="cloud-upload-button" class="active-option"><ion-icon name="cloud-upload-outline"></ion-icon></a>
+                </li>
+                <li style="--i:7;">
+                    <a href="#" class="active-option"><ion-icon name="settings-outline"></ion-icon></a>
+                </li>
             </div>
-            <div id="preview"></div>
-        </div>
+            <!--===================================================
+                        ASSETS               
+            ===================================================-->
+            <div class="assets">
+                <button data-inverted data-tooltip="Mapa base" data-position="left center" class="ui-base-layers">
+                    ::before 
+                    <i class="icon-layers_base">
+                        ::before
+                    </i>
+                    ::after
+                </button>
+                <button data-inverted data-tooltip="Leyenda" data-position="left center" class="ui-legend">
+                    ::before
+                    <i class="icon info circle">
+                        ::before
+                    </i>
+                    ::active
+                </button>
+                <button data-inverted data-tooltip="Ampliar" data-position="left center" class="ui-expand-map">
+                    ::before
+                    <i class="icon expand">
+                        ::before
+                    </i>
+                        ::after
+                </button>
+                <div class="popup_base popup_layers" style="display: flex">
+                    <div class="ui header">
+                        "MAPA BASE"
+                        <button data-inverted data-tooltip="Minimizar" data-position="left center" class="ui-hide-toggle">
+                            ::before
+                            <i class="icon hide_panel">
+                                ::before
+                            </i>
+                            ::after
+                        </button>
+                    </div>
+                    <div class="popup-content">
+                        <div class="group-name flex">
+                            <span class="text js-overflow-ellipsis">Tipo de mapa</span>
+                        </div>
+                        <div class="popup_base_flex mb-10">
+                            <div data-layer="here" class="popup_base_item toggle_layer selected">
+                                <img src="https://api.lokinn.com/assets/images/icons/here_icon.png">
+                                <span>Estándar</span>
+                            </div>
+                            <div data-layer="here_satelite" class="popup_base_item toggle_layer">
+                                <img src="https://api.lokinn.com/assets/images/icons/bing_icon.png">
+                                <span>Satélite</span>
+                            </div>
+                            <div data-layer="layer-pnoa" class="popup_base_item toggle_layer">
+                                <img src="https://api.lokinn.com/assets/images/icons/pnoa_icon.png">
+                                <span>Ortofoto PNOA</span>
+                            </div>
+                            <div data-layer="layer-siose" class="popup_base_item toggle_layer">
+                                <img src="https://api.lokinn.com/assets/images/icons/siose_icon.png">
+                                <span>Ocupación del suelo</span>
+                            </div>
+                        </div>
+                        <div class="group-name flex">
+                            <span class="text js-overflow-ellipsis">Mapas de detalle</span>
+                        </div>
+                        <div class="popup_base_flex">
+                            <div data-layer="catastro" class="popup_base_item toggle_layer_over">
+                                <img src="https://api.lokinn.com/assets/images/icons/callejero_icon.png">
+                                <span>Catastro</span>
+                            </div>
+                            <div data-layer="traffic" class="popup_base_item toggle_layer_over">
+                                <img src="	https://api.lokinn.com/assets/images/icons/traffic_icon.png">
+                                <span>Tráfico</span>
+                            </div>
+                        </div>
+                        <div class="popup_base popup_leyend" style="display: flex;">
+                            <div class="ui header">
+                                "Leyenda"
+                                <button data-inverted data-tooltip="Minimizar leyenda" data-position="left center" class="ui-hide-toggle">
+                                    ::before
+                                    <i class="icon hide_panel">
+                                        ::before
+                                    </i>
+                                    ::after
+                                </button>
+                            </div>
+                            <div class="popup-content">
+                                <div class="slider">
+                                    <span>Transparencia</span>
+                                    <div class="ui blue range small">
+                                        <div class="inner">
+                                            <div class="track"></div>
+                                            <div class="track-fill" style="width: 236px;"></div>
+                                            <div class="thumb" style="left: 226px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <!--===================================================
+                        LAYER CONTROL               
+            ===================================================-->
+            <nav class="nav">
+
+                <nav class="nav_container">
+
+                    <h1 class="nav_title">Web.GIS - Service.maps</h1>
+
+                    <a href="#menu" class="nav_menu">
+                        <img src="/ControlLayer/assets/menu.svg" class="nav_icon">        
+                    </a>
+
+                    <a href="#" class="nav_menu nav_menu--second">
+                        <img src="/ControlLayer/assets/close.svg" class="nav_icon">        
+                    </a>
+
+                    <ul class="dropdown" id="menu">
+                        <li class="dropdown_list">
+                            <a href="#" class="dropdown_link">
+                                <img src="./assets/house.svg" class="dropdown_icon">
+                                <span class="dowpdown_span">Inicio</span>
+                            </a>
+                        </li>
+                        <li class="dropdown_list">
+                            <a href="#" class="dropdown_link">
+                                <img src="./assets/projects.svg" class="dropdown_icon">
+                                <span class="dropdown_span" aria-current="true">Capa 1</span>
+                                <img src="./assets/down.svg" class="dropdown_arrow">
+
+                                <input type="checkbox" class="dropdown_check">
+                            </a>
+
+                            <div class="dropdown_content">
+                                <ul class="dropdown_sub">
+                                    <li class="dropdown_li">
+                                        <a href="#" class="sub_capa1 dropdown_anchor">
+                                            <span>Línea de Costa 2017</span>
+                                            <input type="checkbox" class="dropdown_sub_check">
+                                        </a>
+                                    </li>
+                                    <li class="dropdown_li">
+                                        <a href="#" class="sub_capa2 dropdown_anchor">
+                                            <span>Línea de Costa 2022</span>
+                                            <input type="checkbox" class="dropdown_sub_check">
+                                        </a>
+                                    </li>
+                                    <li class="dropdown_li">
+                                        <a href="#" class="sub_capa3 dropdown_anchor">
+                                            <span for="check">Pérdida / Ganancia </span>
+                                            <input type="checkbox" class="dropdown_sub_check">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="dropdown_list">
+                            <a href="#" class="dropdown_link">
+                                <img src="./assets/projects.svg" class="dropdown_icon">
+                                <span class="dowpdown_span">Capa 2</span>
+                                <img src="./assets/down.svg" class="dropdown_arrow">
+
+                                <input type="checkbox" class="dropdown_check">
+                            </a>
+
+                            <div class="dropdown_content">
+                                <ul class="dropdown_sub">
+                                    <li class="dropdown_li">
+                                        <a href="#" class="sub_capa4 dropdown_anchor">
+                                            <span>Vulnerabilidad de los edificios</span>
+                                            <input type="checkbox" class="dropdown_sub_check">
+                                        </a>
+                                    </li>
+                                    <li class="dropdown_li">
+                                        <a href="#" class="sub_capa5 dropdown_anchor">
+                                            <span>Predicción 30 años</span>
+                                            <input type="checkbox" class="dropdown_sub_check">
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li> <!-- Para agregar una linia divisoria dentro del dropdown-->
+                                    <li class="dropdown_li">
+                                        <a href="#" class="sub_capa6 dropdown_anchor">
+                                            <span>Ortofoto 2022</span>
+                                            <input type="checkbox" class="dropdown_sub_check">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+
+                </nav>
+            </nav>
+            <!--===================================================
+                        DROP-FILE                
+            ===================================================-->
+            <div>
+                <div class="drop-area">
+                    <h2>Arrastra/suelta el archivo</h2>
+                    <span>o</span>
+                    <button>Selecciona tu archivo</button>
+                    <input type="file" id="input-file" accept=".geojson, .kml" hidden multiple />
+                </div>
+                <div id="preview"></div>
+            </div>
+        </div>
     </div>
 
     
     <section id="map">
         <div class="frame-map"></div>
     </section>
+</div>
 </body>
 <script src="ControlLayer.js"></script>
 <script src="curcular_menu/circular_menu.js"></script>

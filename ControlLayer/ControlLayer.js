@@ -105,10 +105,10 @@ document.addEventListener("DOMContentLoaded", function () {
         maxZoom: 29,
     });
 
-    var wmsPrediction30years = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
-        layers: "Proyecto_Costas:prediction_30_years",
-        maxZoom: 29,
-    });
+    // var wmsPrediction30years = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
+    //     layers: "Proyecto_Costas:prediction_30_years",
+    //     maxZoom: 29,
+    // });
 
     // -----------CAPAS BASE-----------
         
