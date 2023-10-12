@@ -1,64 +1,194 @@
-element.style {
-}
-.assets {
-    height: 100%;
-    display: block;
-    width: 0;
-    -webkit-transition: padding .5s ease;
-    transition: padding .5s ease;
-    will-change: contents;
-    padding-bottom: 15px;
+.map-assets{
+    position: relative;
 }
 
-.assets .ui-base-layers {
-    padding: 10px;
-    border-radius: 31px;
-    margin: 4px;
-    width: 36px;
-    padding: 10px 5px;
+.assets {
+    position: fixed;
+    top: 5em;
+    right: 10px;
+    z-index: 999;
 }
-.ui-base-layers, .ui-base-layers {
-    color: #6e7885;
-    background-color: #fff;
-    -webkit-box-shadow: var(--none,0 1px 3px rgba(0,0,0,.12),0 2px 6px rgba(0,0,0,.24));
-    box-shadow: var(--none,0 1px 3px rgba(0,0,0,.12),0 2px 6px rgba(0,0,0,.24));
-}
-.ui-base-layers .button {
-    padding: 0.78571429em 0.78571429em 0.78571429em;
-}
-.buttons .or {
-    font-size: 1rem;
-}
-.ui.button {
+
+/* -----------ICONOS ASSETS----------- */
+.ui-base-layers {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 3em;
+    right: 10px;
+    color: #fff;
+    background: #555555fd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    border-radius: 50%;
     cursor: pointer;
-    display: inline-block;
-    min-height: 1em;
-    outline: 0;
-    border: none;
-    vertical-align: baseline;
-    background: #e0e1e2 none;
-    color: rgba(0,0,0,.6);
-    font-family: Mulish,'Helvetica Neue',Arial,Helvetica,sans-serif;
-    margin: 0 0.25em 0 0;
-    padding: 0.78571429em 1.5em 0.78571429em;
-    text-transform: none;
-    text-shadow: none;
-    font-weight: 700;
-    line-height: 1em;
-    font-style: normal;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5),
+                inset 0 4px 4px rgba(255, 255, 255, 0.2),
+                inset 0 -4px 4px rgba(255, 255, 255, 0.2);
+    font-size: 2em;
+    transition: transform 1.25s;
+    border-style: none;
+}
+
+.ui-base-layers a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scale: 0.7;
+}
+
+.ui-legend  {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 5em;
+    right: 10px;
+    color: #fff;
+    background: #555555fd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5),
+                inset 0 4px 4px rgba(255, 255, 255, 0.2),
+                inset 0 -4px 4px rgba(255, 255, 255, 0.2);
+    font-size: 2em;
+    transition: transform 1.25s;
+    border-style: none;
+}
+
+.ui-legend a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scale: 0.7;
+}
+
+.ui-expand-map{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 7em;
+    right: 10px;
+    color: #fff;
+    background: #555555fd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5),
+                inset 0 4px 4px rgba(255, 255, 255, 0.2),
+                inset 0 -4px 4px rgba(255, 255, 255, 0.2);
+    font-size: 2em;
+    transition: transform 1.25s;
+    border-style: none;
+}
+
+.ui-expand-map a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scale: 0.7;
+}
+
+/* ---------------ASSET ACTIVO BASE LAYERS--------------- */
+.popup_base.popup_layers{
+    position: relative;
+    padding-top: 1em;
+    height: 250px;
+}
+
+.ui.header {
+    position: relative;
+    color: #000000DE;
+    font-size: 13px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding: 0 7px 0 15px;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 8em;
+}
+
+
+.container-base-layers {
+    position: absolute;
+    display: grid;
+    flex-direction: row;
+    border: 2px solid #000; /* Agrega un borde alrededor del cuadrado */
+    border-radius: 10px;
+    padding: 10px; /* Añade relleno para separar el contenido del borde */
+    background-color: #f0f0f0; /* Agrega un fondo de color al cuadrado */
+    right: 5rem; /* Separar el contenedor del limite derecho del mapa (para que no sobresalga */
+    top: 5rem;
+}
+
+.group-name.flex .group-name {
+    position: relative;
+    display: grid;
     text-align: center;
-    text-decoration: none;
-    border-radius: 0.28571429rem;
-    -webkit-box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgba(34,36,38,.15) inset;
-    box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgba(34,36,38,.15) inset;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-transition: opacity .1s ease,background-color .1s ease,color .1s ease,background .1s ease,-webkit-box-shadow .1s ease;
-    transition: opacity .1s ease,background-color .1s ease,color .1s ease,background .1s ease,-webkit-box-shadow .1s ease;
-    transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;
-    transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease,-webkit-box-shadow .1s ease;
-    will-change: '';
-    -webkit-tap-highlight-color: transparent;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+}
+
+.popup-title1 {
+    font-size: 15px; /* Tamaño de fuente más grande */
+    color: black; /* Color de texto rojo */
+    font-weight: bold; /* Texto en negrita (opcional) */
+    text-decoration: underline;
+    padding-bottom: 10px;
+    justify-content: center;
+    text-align: center;
+}
+
+.popup-title2 {
+    font-size: 13px; /* Tamaño de fuente más grande */
+    color: grey; /* Color de texto rojo */
+    font-weight: bold; /* Texto en negrita (opcional) */
+    padding-top: 10px;
+}
+
+.popup_base_flex.mb-10 {
+    display: flex;
+    justify-content: space-around; /* Añade espaciado horizontal entre elementos */
+}
+
+.popup_base_item.toggle_layer {
+    position: relative;
+    display: flex; /* Utiliza flexbox para alinear imágenes y texto */
+    flex-direction: column; /* Apila las imágenes y el texto verticalmente */
+    align-items: center; /* Centra horizontalmente el contenido */
+    text-align: center; /* Centra el texto horizontalmente */
+    width: 5em;
+}
+
+.popup_base_item.toggle_layer img {
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid grey;
+    transform: scale(0.7); /* Corrige la propiedad scale (no scale) */
+}
+
+.popup_base_item.toggle_layer span {
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.65rem;
+    white-space: wrap; /* Para que el texto se divida en múltiples líneas */
+    display: -webkit-box;
+}
+
+.group-name.flex {
+    position: relative;
+    display: grid;
+    text-align: center;
+    justify-content: left;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
 }
