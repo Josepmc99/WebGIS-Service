@@ -10,9 +10,15 @@
     <link rel="stylesheet" type="text/css" href="curcular_menu/circular_menu.css">
     <link rel="stylesheet" href="loadfile/loadfile.css" />
     <link rel="stylesheet" href="assets/ui-assets.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-better-filelayer@0.1.1/dist/leaflet.betterfilelayer.css"
+          crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <title>Leaflet Control Layer</title>
 
+    <!-- Leaflet BetterFileLayer -->
+    <script type="application/javascript"
+            src="https://unpkg.com/leaflet-better-filelayer@0.1.1/dist/leaflet.betterfilelayer.min.js"
+            crossorigin="anonymous"></script>
     <!-- Cargar Leaflet -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <!-- Cargar iconos toggle menu -->
@@ -133,7 +139,7 @@
                     <a href="#" id="location-icon" class="active-option"><ion-icon name="location-outline"></ion-icon></a>
                 </li>
                 <li style="--i:3;">
-                    <a href="#" class="active-option"><ion-icon name="brush-outline"></ion-icon></a>
+                    <a href="#" id= "drawing-icon" class="active-option"><ion-icon name="brush-outline"></ion-icon></a>
                 </li>
                 <li style="--i:4;">
                     <a href="#" class="active-option"><ion-icon name="color-palette-outline"></ion-icon></a>
@@ -204,7 +210,11 @@
                                 </div>
                                 <div data-layer="layer_nomenclator" class="popup_base_item toggle_layer">
                                     <img src="https://api.lokinn.com/assets/images/icons/traffic_icon.png">
-                                    <span>Tráfico</span>
+                                    <span>Nomenclator</span>
+                                </div>
+                                <div data-layer="layer_areas_gestion" class="popup_base_item toggle_layer">
+                                    <img src="https://api.lokinn.com/assets/images/icons/here_grey_icon.png">
+                                    <span>Áreas de Gestión Residuos</span>
                                 </div>
                             </div>
                         </div>
@@ -323,7 +333,7 @@
                     <h2>Arrastra/suelta el archivo</h2>
                     <span>o</span>
                     <button>Selecciona tu archivo</button>
-                    <input type="file" id="input-file" accept=".geojson, .kml" hidden multiple />
+                    <input type="file" id="input-file" accept=".gpx,.kml,.geojson,.json,.csv,.topojson,.wkt,.shp,.shx,.prj,.dbf,.zip" hidden multiple />
                 </div>
                 <div id="preview"></div>
             </div>
@@ -331,7 +341,7 @@
     </div>
 
     
-    <section id="map">
+    <section id="map" class="draw-cursor-enabled">
         <div class="frame-map"></div>
     </section>
 </div>
@@ -340,7 +350,7 @@
 <script src="curcular_menu/circular_menu.js"></script>
 <script src="loadfile/loadfile.js"></script>
 <script src="assets/ui-assets.js"></script>
-<!-- <script src="mapa.js"></script> -->
+
 </html>
  
 

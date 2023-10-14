@@ -12,7 +12,7 @@
 
 /* -----------ICONOS ASSETS----------- */
 
-/* .ui-base-layers {
+.ui-base-layers {
     position: absolute;
     width: 50px;
     height: 50px;
@@ -90,7 +90,7 @@
     font-size: 2em;
     transition: transform 1.25s;
     border-style: none;
-} */
+}
 
 .ui-expand-map a{
     display: flex;

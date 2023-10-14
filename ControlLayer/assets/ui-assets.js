@@ -58,3 +58,36 @@ baseLayerImages.forEach(function(image) {
         changeLayerStyle(image, span);
     });
 });
+
+ //------------------------------------------- MAXIMIZE FULL SCREEN -------------------------------------------------------/
+var expandIcon = document.getElementById('expand-icon');
+
+expandIcon.addEventListener('click', function () {
+    toggleFullscreen();
+});
+
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        // Si el documento no está en modo de pantalla completa, entra en él.
+        if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+            document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari y Opera
+            document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+            document.documentElement.msRequestFullscreen();
+        }
+    } else {
+        // Si el documento está en modo de pantalla completa, sal de él.
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { // Firefox
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { // Chrome, Safari y Opera
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { // IE/Edge
+            document.msExitFullscreen();
+        }
+    }
+}

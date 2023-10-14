@@ -210,4 +210,180 @@ document.addEventListener("DOMContentLoaded", function () {
         orto2022Visible = !orto2022Visible;
     });
     
+    //------------------------------------------- ASSET ADD BASE LAYERS -------------------------------------------------------/
+
+    // Agrega un manejador de eventos clic a la opción "Estándar"
+    const standardMapOption = document.querySelector("[data-layer=layer_base]");
+    standardMapOption.addEventListener("click", function() {
+        // Remueve el mapa actual
+        mymap.eachLayer(function(layer) {
+            mymap.removeLayer(layer);
+        });
+
+        // Agrega el mapa base de Open Street Maps
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 29,
+        }).addTo(mymap);
+    });
+
+    // Agrega un manejador de eventos clic a la opción "Satélite 2022"
+    const orto2017Option = document.querySelector("[data-layer=layer_orto2017]");
+    orto2017Option.addEventListener("click", function() {
+        // Remueve el mapa actual
+        mymap.eachLayer(function(layer) {
+            mymap.removeLayer(layer);
+        });
+
+        // Agrega la ortofoto
+        var orto2017 = L.tileLayer.wms("https://terramapas.icv.gva.es/0202_2017CVAL0025?service=wms&request=getcapabilities", {
+            maxZoom: 25,
+            layers: "2017CVAL0025_RGB",
+            format: "image/png",
+            transparent: true,
+        })
+        orto2017.addTo(mymap);
+    });
+
+    // Agrega un manejador de eventos clic a la opción "Satélite 2022"
+    const orto2022Option = document.querySelector("[data-layer=layer_orto2022]");
+    orto2022Option.addEventListener("click", function() {
+        // Remueve el mapa actual
+        mymap.eachLayer(function(layer) {
+            mymap.removeLayer(layer);
+        });
+
+        var orto2022 = L.tileLayer.wms("https://terramapas.icv.gva.es/0202_2022CVAL0025", {
+            maxZoom: 25,
+            layers: "2022CVAL0025_RGB",
+            format: "image/png",
+            transparent: true,
+        });
+        orto2022.addTo(mymap);
+    });
+
+    // Agrega un manejador de eventos clic a la opción "Satélite 2022"
+    const sioseOption = document.querySelector("[data-layer=layer_siose]");
+    sioseOption.addEventListener("click", function() {
+        // Remueve el mapa actual
+        mymap.eachLayer(function(layer) {
+            mymap.removeLayer(layer);
+        });
+
+        var siose = L.tileLayer.wms("https://terramapas.icv.gva.es/04_SIOSE", {
+            maxZoom: 25,
+            layers: "siose2015",
+            format: "image/png",
+            transparent: true,
+        });
+        siose.addTo(mymap);
+    });
+
+    //------------------------------------------- ASSET ADD BASE LAYERS DE DETALLE -------------------------------------------------------/
+    // Desactivar solo las capas de detalle al volver a clicar sobre ellas
+    const baseLayers = {
+        layer_catastro: null,
+        layer_nomenclator: null,
+        layer_areas_gestion: null,
+    };
+
+    // Función para evitar que desaparezca la capa base activa cuando se activa el Mapa de detalle
+    function toggleBaseLayer(layerName, layer) {
+        if (baseLayers[layerName] === null) {
+            baseLayers[layerName] = layer.addTo(mymap);
+        } else {
+            mymap.removeLayer(baseLayers[layerName]);
+            baseLayers[layerName] = null;
+        }
+    }
+
+    // Agrega un manejador de eventos clic a la opción "Satélite 2022"
+    const catastroOption = document.querySelector("[data-layer=layer_catastro]");
+    catastroOption.addEventListener("click", function() {
+        toggleBaseLayer("layer_catastro", L.tileLayer.wms("http://ovc.catastro.meh.es/cartografia/INSPIRE/spadgcwms.aspx", {
+            maxZoom: 25,
+            layers: "CP.CadastralParcel",
+            format: "image/png",
+            transparent: true,
+        }));
+        catastro.addTo(mymap);
+    });
+
+    // Agrega un manejador de eventos clic a la opción "Satélite 2022"
+    const nomenclatorOption = document.querySelector("[data-layer=layer_nomenclator]");
+    nomenclatorOption.addEventListener("click", function() {
+        toggleBaseLayer("layer_nomenclator", L.tileLayer.wms("http://terramapas.icv.gva.es/toponimia_base", {
+            layers: "NOMENCLATOR_ICV",
+            format: "image/png",
+            transparent: true,
+            attribution: "Atribución de la capa WMS"
+        }));
+        nomenclator.addTo(mymap);
+    });
+
+    // Agrega un manejador de eventos clic a la opción "Satélite 2022"
+    const gestionOption = document.querySelector("[data-layer=layer_areas_gestion]");
+    gestionOption.addEventListener("click", function() {
+        toggleBaseLayer("layer_areas_gestion", L.tileLayer.wms("http://carto.icv.gva.es/arcgis/services/tm_medio_ambiente/residuos/MapServer/WmsServer?", {
+            layers: "2",
+            maxZoom: 25,
+            format: "image/png",
+            transparent: true,
+            attribution: "Atribución de la capa WMS"
+        }));
+        areas_gestion.addTo(mymap);
+    });
+
+    //------------------------------------------- DRAWING ASSET FROM CIRCULAR MENU -------------------------------------------------------/
+    const DrawingButton = document.getElementById("drawing-icon");
+    let drawingActive = false; // Variable para controlar si la capacidad de dibujo está activa
+
+    // Agrega un evento de clic al botón de dibujo
+    DrawingButton.addEventListener("click", function () {
+        // Alterna la clase 'active' en el botón para mostrar u ocultar
+        DrawingButton.classList.toggle("active");
+
+        // Actualiza el estado de la variable drawingActive
+        drawingActive = !drawingActive;
+
+        if (drawingActive) {
+            // Habilita la capacidad de dibujo
+            mymap.on('click', startDrawingPolygon);
+            mymap.on('dblclick', finishDrawingPolygon);
+            DrawingButton.classList.add('draw-cursor-enabled'); // Cambiar el estilo del cursor
+        } else {
+            // Deshabilita la capacidad de dibujo
+            mymap.off('click', startDrawingPolygon);
+            mymap.off('dblclick', finishDrawingPolygon);
+            DrawingButton.classList.remove('draw-cursor-enabled'); // Restablece el estilo del cursor
+        }
+    });
+
+    let drawingMode = null; // Variable para almacenar el polígono dibujado
+
+    function startDrawingPolygon(e) {
+        if (drawingMode === null) {
+            drawingMode = L.polygon([e.latlng], { color: 'blue' }).addTo(mymap);
+        } else {
+            drawingMode.addLatLng(e.latlng);
+        }
+    }
+
+    function finishDrawingPolygon(e) {
+        if (drawingMode) {
+            mymap.off('click', startDrawingPolygon);
+            mymap.off('dblclick', finishDrawingPolygon);
+
+            var coordinates = drawingMode.getLatLngs();
+            console.log('Polígono guardado:', coordinates);
+
+            drawingMode = null;
+
+            if (drawingActive) {
+                // Reactivar la capacidad de dibujar un nuevo polígono
+                mymap.on('click', startDrawingPolygon);
+                mymap.on('dblclick', finishDrawingPolygon);
+            }
+        }
+    }
+
 });

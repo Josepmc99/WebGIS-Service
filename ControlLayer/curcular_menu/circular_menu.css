@@ -100,3 +100,8 @@
                 inset 0 4px 4px rgba(255, 255, 255, 1),
                 inset 0 -4px 4px rgba(255, 255, 255, 1);
 }
+
+/* Estilo de cursor personalizado cuando está activa la herramienta de dibujo */
+.draw-cursor-enabled {
+    cursor: crosshair;
+}

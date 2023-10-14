@@ -61,7 +61,7 @@ function processFile(file) {
     const docType = file.type;
   
     // Definir las extensiones válidas (GeoJSON y KML)
-    const validExtensions = ['application/geo+json', 'application/vnd.google-earth.kml+xml'];
+    const validExtensions = ['application/geo+json'];
   
     if (validExtensions.indexOf(docType) !== -1) {
       // Archivo válido
@@ -86,10 +86,10 @@ async function uploadFile(file, id) {
     formData.append("file", file);
 
     try {
-        const response = await fetch('https://localhost/127.0.0.1:5500/', {
-            method: "POST",
-            body: formData,
-        });
+        const response = await fetch('http://localhost:8080/geoserver/Costas/file.geojson', {
+          method: "POST",
+          body: formData,
+      });
 
         const responseText = await response.text();
         console.log(responseText);
@@ -101,3 +101,4 @@ async function uploadFile(file, id) {
         ).innerHTML = `<span class="failure">El archivo no pudo subirse ...</span>`
     }
 }
+
