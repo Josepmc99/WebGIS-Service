@@ -44,6 +44,17 @@ toggle.onclick = function(){
         }
     });
 
+    const LayerControlIcon = document.getElementById("settings-icon");
+    const uiLayerControlIcon = document.getElementById("layercontrol-icon");
+
+    LayerControlIcon.addEventListener("click", function() {
+        if (uiLayerControlIcon.classList.contains("hidden")) {
+            uiLayerControlIcon.classList.remove("hidden");
+        } else {
+            uiLayerControlIcon.classList.add("hidden");
+        }
+    });
+
     const legendIcon = document.getElementById("settings-icon");
     const uiLegendIcon = document.getElementById("legent-icon");
 

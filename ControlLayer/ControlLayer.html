@@ -165,10 +165,10 @@
                     <a class="icon-legend"><ion-icon name="list-outline"></ion-icon></a>
                 </button>
                 <button href="#assets" id="expand-icon" class="ui-expand-map active hidden">
-                    <a class="icon expand"><ion-icon name="expand-outline"></ion-icon></a>
+                    <a class="icon-expand"><ion-icon name="expand-outline"></ion-icon></a>
                 </button>
-                <button href="#assets" id="layers-icon" class="ui-LayerControl active hidden">
-                    <a class="icon expand"><ion-icon name="layers-outline"></ion-icon></a>
+                <button href="#assets" id="layercontrol-icon" class="ui-LayerControl active hidden">
+                    <a class="icon-LayerControl"><ion-icon name="layers-outline"></ion-icon></a>
                 </button>
 
                 <!---------- BASE LAYERS ------------>
@@ -219,109 +219,84 @@
                             </div>
                         </div>
                     </div>
-                    <!---------- LEYENDA ------------>
-                    <!-- <div class="legent_popup" style="display: flex;">
-                            <div class="ui header">
-                                "Leyenda"
-                                <button class="ui-hide-toggle">
+                <!---------- LEYENDA ------------>
+                <!-- <div class="legent_popup" style="display: flex;">
+                        <div class="ui header">
+                            "Leyenda"
+                            <button class="ui-hide-toggle">
+                                ::before
+                                <i class="icon hide_panel">
                                     ::before
-                                    <i class="icon hide_panel">
-                                        ::before
-                                    </i>
-                                    ::after
-                                </button>
-                            </div>
-                            <div class="popup-content">
-                                <div class="slider">
-                                    <span>Transparencia</span>
-                                    <div class="ui blue range small">
-                                        <div class="inner">
-                                            <div class="track"></div>
-                                            <div class="track-fill" style="width: 236px;"></div>
-                                            <div class="thumb" style="left: 226px;"></div>
-                                        </div>
+                                </i>
+                                ::after
+                            </button>
+                        </div>
+                        <div class="popup-content">
+                            <div class="slider">
+                                <span>Transparencia</span>
+                                <div class="ui blue range small">
+                                    <div class="inner">
+                                        <div class="track"></div>
+                                        <div class="track-fill" style="width: 236px;"></div>
+                                        <div class="thumb" style="left: 226px;"></div>
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
-                    <!---------- LAYERS ------------>
-                    <div class="legend_popup" style="display: flex;">
-                        <div class="control_layers">
-                            <ul class="dropdown" id="menu">
-                                <li class="dropdown_list">
-                                    <a href="#" class="dropdown_link">
-                                        <img src="./assets/house.svg" class="dropdown_icon">
-                                        <span class="dowpdown_span">Inicio</span>
-                                    </a>
-                                </li>
-                                <li class="dropdown_list">
-                                    <a href="#" class="dropdown_link">
-                                        <img src="./assets/projects.svg" class="dropdown_icon">
-                                        <span class="dropdown_span" aria-current="true">Capa 1</span>
-                                        <img src="./assets/down.svg" class="dropdown_arrow">
-                
-                                        <input type="checkbox" class="dropdown_check">
-                                    </a>
-                
-                                    <div class="dropdown_content">
-                                        <ul class="dropdown_sub">
-                                            <li class="dropdown_li">
-                                                <a href="#" class="sub_capa1 dropdown_anchor">
-                                                    <span>Línea de Costa 2017</span>
-                                                    <input type="checkbox" class="dropdown_sub_check">
-                                                </a>
-                                            </li>
-                                            <li class="dropdown_li">
-                                                <a href="#" class="sub_capa2 dropdown_anchor">
-                                                    <span>Línea de Costa 2022</span>
-                                                    <input type="checkbox" class="dropdown_sub_check">
-                                                </a>
-                                            </li>
-                                            <li class="dropdown_li">
-                                                <a href="#" class="sub_capa3 dropdown_anchor">
-                                                    <span for="check">Pérdida / Ganancia </span>
-                                                    <input type="checkbox" class="dropdown_sub_check">
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="dropdown_list">
-                                    <a href="#" class="dropdown_link">
-                                        <img src="./assets/projects.svg" class="dropdown_icon">
-                                        <span class="dowpdown_span">Capa 2</span>
-                                        <img src="./assets/down.svg" class="dropdown_arrow">
-                
-                                        <input type="checkbox" class="dropdown_check">
-                                    </a>
-                
-                                    <div class="dropdown_content">
-                                        <ul class="dropdown_sub">
-                                            <li class="dropdown_li">
-                                                <a href="#" class="sub_capa4 dropdown_anchor">
-                                                    <span>Vulnerabilidad de los edificios</span>
-                                                    <input type="checkbox" class="dropdown_sub_check">
-                                                </a>
-                                            </li>
-                                            <li class="dropdown_li">
-                                                <a href="#" class="sub_capa5 dropdown_anchor">
-                                                    <span>Predicción 30 años</span>
-                                                    <input type="checkbox" class="dropdown_sub_check">
-                                                </a>
-                                            </li>
-                                            <li><hr class="dropdown-divider"></li> <!-- Para agregar una linia divisoria dentro del dropdown-->
-                                            <li class="dropdown_li">
-                                                <a href="#" class="sub_capa6 dropdown_anchor">
-                                                    <span>Ortofoto 2022</span>
-                                                    <input type="checkbox" class="dropdown_sub_check">
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
                         </div>
                     </div>
+                </div> -->
+                <!---------- LAYERS ------------>
+                    <!-- <div class="LayerControl_popup" style="display: flex;">
+                        <div class="ui header">
+                            <div id="layer-control-popup" class="container-layer-control">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="dropdown_link">
+                                            <img src="./assets/projects.svg" class="dropdown_icon">
+                                            <span class="dropdown_span" aria-current="true">Capa 1</span>
+                                            <img src="./assets/down.svg" class="dropdown_arrow">
+                    
+                                            <input type="checkbox" id="check" class="checktoggle">
+                                        </a>
+                                        <ul>
+                                            <li><a href="#">Subcapa1</a></li>
+                                            <li><a href="#">Subcapa2</a></li>
+                                            <li><a href="#">Subcapa3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown_link">
+                                            <img src="./assets/projects.svg" class="dropdown_icon">
+                                            <span class="dropdown_span" aria-current="true">Capa 2</span>
+                                            <img src="./assets/down.svg" class="dropdown_arrow">
+                    
+                                            <input type="checkbox" id="check" class="checktoggle">
+                                        </a>
+                                        <ul>
+                                            <li><a href="#">Subcapa1</a></li>
+                                            <li><a href="#">Subcapa2</a></li>
+                                            <li><a href="#">Subcapa3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown_link">
+                                            <img src="./assets/projects.svg" class="dropdown_icon">
+                                            <span class="dropdown_span" aria-current="true">Capa 3</span>
+                                            <img src="./assets/down.svg" class="dropdown_arrow">
+                    
+                                            <input type="checkbox" id="check" class="checktoggle">
+                                        </a>
+                                        <ul>
+                                            <li><a href="#">Subcapa1</a></li>
+                                            <li><a href="#">Subcapa2</a></li>
+                                            <li><a href="#">Subcapa3</a></li>
+                                        </ul>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div> -->
                 </div>
             </div>
 

@@ -41,11 +41,40 @@
     scale: 0.7;
 }
 
-.ui-legend  {
+.ui-LayerControl{
     position: absolute;
     width: 50px;
     height: 50px;
     top: 5em;
+    right: 10px;
+    color: #fff;
+    background: #555555fd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10002;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5),
+                inset 0 4px 4px rgba(255, 255, 255, 0.2),
+                inset 0 -4px 4px rgba(255, 255, 255, 0.2);
+    font-size: 2em;
+    transition: transform 1.25s;
+    border-style: none;
+}
+
+.ui-LayerControl a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scale: 0.7;
+}
+
+.ui-legend  {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 7em;
     right: 10px;
     color: #fff;
     background: #555555fd;
@@ -74,7 +103,7 @@
     position: absolute;
     width: 50px;
     height: 50px;
-    top: 7em;
+    top: 9em;
     right: 10px;
     color: #fff;
     background: #555555fd;
@@ -99,37 +128,8 @@
     scale: 0.7;
 }
 
-.ui-LayerControl{
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    top: 9em;
-    right: 10px;
-    color: #fff;
-    background: #555555fd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5),
-                inset 0 4px 4px rgba(255, 255, 255, 0.2),
-                inset 0 -4px 4px rgba(255, 255, 255, 0.2);
-    font-size: 2em;
-    transition: transform 1.25s;
-    border-style: none;
-}
-
-.ui-LayerControl a{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    scale: 0.7;
-}
-
 /* Ajusta las propiedades cuando el icono no está activo */
-.ui-legend:not(.active), .ui-expand-map:not(.active), .ui-base-layers:not(.active){
+.ui-legend:not(.active), .ui-expand-map:not(.active), .ui-base-layers:not(.active) .ui-LayerControl:not(.active){
     position: fixed;
     bottom: 20px;
     right: 50px;
@@ -145,7 +145,7 @@
 .popup_base.popup_layers{
     position: relative;
     padding-top: 1em;
-    height: 350px;
+    height: 400px;
 }
 
 #base-layers-popup {
@@ -262,5 +262,88 @@
 .active-layer {
     border: 2px solid red !important;
     color: red !important;
+}
+
+
+/*--------------------- ASSET CONTOL LAYER ----------------*/
+
+.LayerControl_popup {
+    position: absolute;
+    display: grid;
+    flex-direction: row;
+    border: 2px solid #000; /* Agrega un borde alrededor del cuadrado */
+    border-radius: 10px;
+    padding: 10px; /* Añade relleno para separar el contenido del borde */
+    background-color: #f0f0f0; /* Agrega un fondo de color al cuadrado */
+    right: 5rem; /* Separar el contenedor del limite derecho del mapa (para que no sobresalga */
+    top: 9rem;
+}
+
+.dropdown_link{
+    color: rgb(184, 187, 191);
+    padding: 1em .7em;
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+
+    position: relative;
+    background-color: black;
+    border-radius: 5px;
+}
+
+.checktoggle{
+    height: 1em;
+    width: 1em;
+    background:#222;
+    appearance: none;
+    border-radius: 160px;
+    box-shadow: inset 0 8px 60px rgba(0, 0, 0, 0.1),
+                inset 0 8px 8px rgba(0, 0, 0, 0.1),
+                inset 0 -4px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    outline: none;
+    cursor: pointer;;
+    transition: 0.5s;
+}
+
+/* Botón activado (negro) */
+.checktoggle::before{
+    height: 1em;
+    width: 1em;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    content: "";
+    background: linear-gradient(to bottom, #444, #333);
+    border-radius: 50%;
+    transform: scale(0.9);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5),
+                inset 0 4px 4px rgba(255, 255, 255, 0.2),
+                inset 0 -4px 4px rgba(255, 255, 255, 0.2);
+    transition: 0.5s;
+}
+
+/* Fondo Toggle desactivado */
+.checktoggle:checked{
+    background: #fff;
+    box-shadow: inset 0 2px 60px rgba(0, 0, 0, 0.1),
+                inset 0 2px 8px rgba(0, 0, 0, 0.1),
+                inset 0 -4px 8px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Botón desactivado (blanco) */
+.checktoggle:checked::before{
+    left: 1em;
+    top: 0;
+    content: "";
+    background: linear-gradient(to bottom, #eaeaea, #f9f9f9);
+    border-radius: 50%;
+    transform: scale(0.9);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1),
+                inset 0 4px 4px rgba(255, 255, 255, 1),
+                inset 0 -4px 4px rgba(255, 255, 255, 1);
 }
 
