@@ -46,80 +46,6 @@
                 <img src="/ControlLayer/assets/close.svg" class="nav_icon">        
             </a>
 
-            <ul class="dropdown" id="menu">
-                <li class="dropdown_list">
-                    <a href="#" class="dropdown_link">
-                        <img src="./assets/house.svg" class="dropdown_icon">
-                        <span class="dowpdown_span">Inicio</span>
-                    </a>
-                </li>
-                <li class="dropdown_list">
-                    <a href="#" class="dropdown_link">
-                        <img src="./assets/projects.svg" class="dropdown_icon">
-                        <span class="dropdown_span" aria-current="true">Capa 1</span>
-                        <img src="./assets/down.svg" class="dropdown_arrow">
-
-                        <input type="checkbox" class="dropdown_check">
-                    </a>
-
-                    <div class="dropdown_content">
-                        <ul class="dropdown_sub">
-                            <li class="dropdown_li">
-                                <a href="#" class="sub_capa1 dropdown_anchor">
-                                    <span>Línea de Costa 2017</span>
-                                    <input type="checkbox" class="dropdown_sub_check">
-                                </a>
-                            </li>
-                            <li class="dropdown_li">
-                                <a href="#" class="sub_capa2 dropdown_anchor">
-                                    <span>Línea de Costa 2022</span>
-                                    <input type="checkbox" class="dropdown_sub_check">
-                                </a>
-                            </li>
-                            <li class="dropdown_li">
-                                <a href="#" class="sub_capa3 dropdown_anchor">
-                                    <span for="check">Pérdida / Ganancia </span>
-                                    <input type="checkbox" class="dropdown_sub_check">
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="dropdown_list">
-                    <a href="#" class="dropdown_link">
-                        <img src="./assets/projects.svg" class="dropdown_icon">
-                        <span class="dowpdown_span">Capa 2</span>
-                        <img src="./assets/down.svg" class="dropdown_arrow">
-
-                        <input type="checkbox" class="dropdown_check">
-                    </a>
-
-                    <div class="dropdown_content">
-                        <ul class="dropdown_sub">
-                            <li class="dropdown_li">
-                                <a href="#" class="sub_capa4 dropdown_anchor">
-                                    <span>Vulnerabilidad de los edificios</span>
-                                    <input type="checkbox" class="dropdown_sub_check">
-                                </a>
-                            </li>
-                            <li class="dropdown_li">
-                                <a href="#" class="sub_capa5 dropdown_anchor">
-                                    <span>Predicción 30 años</span>
-                                    <input type="checkbox" class="dropdown_sub_check">
-                                </a>
-                            </li>
-                            <li><hr class="dropdown-divider"></li> <!-- Para agregar una linia divisoria dentro del dropdown-->
-                            <li class="dropdown_li">
-                                <a href="#" class="sub_capa6 dropdown_anchor">
-                                    <span>Ortofoto 2022</span>
-                                    <input type="checkbox" class="dropdown_sub_check">
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-
         </nav>
     </nav>
     <div class="map-assets">
@@ -133,7 +59,7 @@
                     <a href="#" id="zoomButton" class="active-option"><ion-icon name="home-outline"></ion-icon></a>
                 </li>
                 <li style="--i:1;">
-                    <a href="#" id="LayerControl" class="active-option"><ion-icon name="layers-outline"></ion-icon></a>
+                    <a href="#" id="share-icon" class="active-option"><ion-icon name="person-add-outline"></ion-icon></a>
                 </li>
                 <li style="--i:2;">
                     <a href="#" id="location-icon" class="active-option"><ion-icon name="location-outline"></ion-icon></a>
@@ -171,7 +97,7 @@
                     <a class="icon-LayerControl"><ion-icon name="layers-outline"></ion-icon></a>
                 </button>
 
-                <!---------- BASE LAYERS ------------>
+                <!---------- LAYERS ASSETS ------------>
                 <div class="popup_base popup_layers" style="display: flex">
                     <div class="ui header">
                         <div id="base-layers-popup" class="container-base-layers">
@@ -246,57 +172,102 @@
                     </div>
                 </div> -->
                 <!---------- LAYERS ------------>
-                    <!-- <div class="LayerControl_popup" style="display: flex;">
+                    <div class="LayerControl_popup" id="layer-control-popup" style="display: flex;">
                         <div class="ui header">
-                            <div id="layer-control-popup" class="container-layer-control">
+                            <div class="container-layer-control">
                                 <ul>
                                     <li>
                                         <a href="#" class="dropdown_link">
                                             <img src="./assets/projects.svg" class="dropdown_icon">
-                                            <span class="dropdown_span" aria-current="true">Capa 1</span>
-                                            <img src="./assets/down.svg" class="dropdown_arrow">
+                                            <span class="dropdown_span" aria-current="true" contenteditable="true">Capa 1</span>
+                                            <img src="./assets/down.svg" class="dropdown_arrow" data-target="menu-1">
                     
-                                            <input type="checkbox" id="check" class="checktoggle">
+                                            <input type="checkbox" class="checktoggle">
                                         </a>
-                                        <ul>
-                                            <li><a href="#">Subcapa1</a></li>
-                                            <li><a href="#">Subcapa2</a></li>
-                                            <li><a href="#">Subcapa3</a></li>
+                                        <ul class="dropdown_sub" data-menu="menu-1">
+                                            <li class="dropdown_li">
+                                                <a href="#" class="sub_capa1 dropdown_anchor">
+                                                    <span class="dropdown_span" contenteditable="true">Subcapa1</span>
+                                                    <input type="checkbox" class="checktoggle">
+                                                </a>
+                                            </li>
+                                            <li class="dropdown_li">
+                                                <a href="#" class="sub_capa2 dropdown_anchor">
+                                                    <span class="dropdown_span" contenteditable="true">Subcapa2</span>
+                                                    <input type="checkbox" class="checktoggle">
+                                                </a>
+                                            </li>
+                                            <li class="dropdown_li">
+                                                <a href="#" class="sub_capa3 dropdown_anchor">
+                                                    <span class="dropdown_span" contenteditable="true">Subcapa3</span>
+                                                    <input type="checkbox" class="checktoggle">
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="#" class="dropdown_link">
                                             <img src="./assets/projects.svg" class="dropdown_icon">
-                                            <span class="dropdown_span" aria-current="true">Capa 2</span>
-                                            <img src="./assets/down.svg" class="dropdown_arrow">
+                                            <span class="dropdown_span" aria-current="true" contenteditable="true">Capa 2</span>
+                                            <img src="./assets/down.svg" class="dropdown_arrow" data-target="menu-2">
                     
-                                            <input type="checkbox" id="check" class="checktoggle">
+                                            <input type="checkbox" class="checktoggle">
                                         </a>
-                                        <ul>
-                                            <li><a href="#">Subcapa1</a></li>
-                                            <li><a href="#">Subcapa2</a></li>
-                                            <li><a href="#">Subcapa3</a></li>
+                                        <ul class="dropdown_sub" data-menu="menu-2">
+                                            <li class="dropdown_li">
+                                                <a href="#" class="sub_capa1 dropdown_anchor">
+                                                    <span class="dropdown_span" contenteditable="true">Subcapa1</span>
+                                                    <input type="checkbox" class="checktoggle">
+                                                </a>
+                                            </li>
+                                            <li class="dropdown_li">
+                                                <a href="#" class="sub_capa2 dropdown_anchor">
+                                                    <span class="dropdown_span" contenteditable="true">Subcapa2</span>
+                                                    <input type="checkbox" class="checktoggle">
+                                                </a>
+                                            </li>
+                                            <li class="dropdown_li">
+                                                <a href="#" class="sub_capa3 dropdown_anchor">
+                                                    <span class="dropdown_span" contenteditable="true">Subcapa3</span>
+                                                    <input type="checkbox" class="checktoggle">
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="#" class="dropdown_link">
                                             <img src="./assets/projects.svg" class="dropdown_icon">
-                                            <span class="dropdown_span" aria-current="true">Capa 3</span>
-                                            <img src="./assets/down.svg" class="dropdown_arrow">
+                                            <span class="dropdown_span" aria-current="true" contenteditable="true">Capa 3</span>
+                                            <img src="./assets/down.svg" class="dropdown_arrow" data-target="menu-3">
                     
-                                            <input type="checkbox" id="check" class="checktoggle">
+                                            <input type="checkbox" class="checktoggle">
                                         </a>
-                                        <ul>
-                                            <li><a href="#">Subcapa1</a></li>
-                                            <li><a href="#">Subcapa2</a></li>
-                                            <li><a href="#">Subcapa3</a></li>
+                                        <ul class="dropdown_sub" data-menu="menu-3">
+                                            <li class="dropdown_li">
+                                                <a href="#" class="sub_capa1 dropdown_anchor">
+                                                    <span class="dropdown_span" contenteditable="true">Subcapa1</span>
+                                                    <input type="checkbox" class="checktoggle">
+                                                </a>
+                                            </li>
+                                            <li class="dropdown_li">
+                                                <a href="#" class="sub_capa2 dropdown_anchor">
+                                                    <span class="dropdown_span" contenteditable="true">Subcapa3</span>
+                                                    <input type="checkbox" class="checktoggle">
+                                                </a>
+                                            </li>
+                                            <li class="dropdown_li">
+                                                <a href="#" class="sub_capa3 dropdown_anchor">
+                                                    <span class="dropdown_span" contenteditable="true">Subcapa3</span>
+                                                    <input type="checkbox" class="checktoggle">
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
                                     
                                 </ul>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
 

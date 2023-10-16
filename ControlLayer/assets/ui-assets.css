@@ -143,6 +143,7 @@
 
 /* ---------------ASSET ACTIVO BASE LAYERS--------------- */
 .popup_base.popup_layers{
+    display: hide;
     position: relative;
     padding-top: 1em;
     height: 400px;
@@ -268,34 +269,150 @@
 /*--------------------- ASSET CONTOL LAYER ----------------*/
 
 .LayerControl_popup {
-    position: absolute;
-    display: grid;
+    display: none;
+    flex-direction: column;
+    position: relative;
     flex-direction: row;
-    border: 2px solid #000; /* Agrega un borde alrededor del cuadrado */
+    border: 2px solid #444343; /* Agrega un borde alrededor del cuadrado */
     border-radius: 10px;
-    padding: 10px; /* Añade relleno para separar el contenido del borde */
-    background-color: #f0f0f0; /* Agrega un fondo de color al cuadrado */
+    padding: 80px; /* Añade relleno para separar el contenido del borde */
+    background-color: #000000; /* Agrega un fondo de color al cuadrado */
     right: 5rem; /* Separar el contenedor del limite derecho del mapa (para que no sobresalga */
     top: 9rem;
+    transition: height 0.3s; /* Animación suave de la altura */
+    max-height: auto; /* Establecemos una altura máxima para evitar que se haga demasiado alto */
+    overflow: hidden;
+
+    /* Agregar una barra de desplazamiento vertical cuando sea necesario */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #333 #000;
+}
+
+        /* Estilo de la pista (background) */
+        .LayerControl_popup::-webkit-scrollbar {
+            width: 10px; /* Anchura del scrollbar en navegadores basados en Webkit, como Chrome y Safari */
+        }
+
+        /* Estilo del mango (scroll thumb) */
+        .LayerControl_popup::-webkit-scrollbar-thumb {
+            background: #f7f6f6; /* Color del mango */
+            border-radius: 20px;
+        }
+
+        /* Estilo del mango cuando se desplaza */
+        .LayerControl_popup::-webkit-scrollbar-thumb:hover {
+            background: #555; /* Color del mango al pasar el mouse sobre él */
+            border-radius: 20px;
+        }
+
+.dropdown_span {
+    width: 100px; /* Ancho fijo para el elemento que contiene el texto */
 }
 
 .dropdown_link{
     color: rgb(184, 187, 191);
+    padding-bottom: 2px;
+    text-decoration: none;
+    right: 5rem;
+    left: -95px;
+    top: -6em;
+    width: 265px;
+    
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+
+    position: relative;
+    background-color: rgb(41, 41, 41);
+    border-radius: 5px;
+}
+
+.dropdown_link span {
+    position: relative;
+    left: 40px;
+    height: 20px;
+    scale: 1.4;
+}
+.dropdown_icon {
+    position: relative;
+    padding: 0px 0px 5px 0px;
+    left: 30px;
+    scale: 1;
+}
+
+.dropdown_arrow {
+    position: relative;
+    margin-left: 0;
+    left: 75px;
+    top: -5px;
+    right: -10px;    
+}
+
+.dropdown_sub{
+    position: relative;
+    display: none;
+    overflow: hidden;
+    width: 200px;
+    height: 120px;
+    left: -80px;
+    top: -70px;
+    padding: 20px 0 0px 0;
+}
+
+.dropdown_sub.visible {
+    display: block;
+}
+
+.dropdown_li{
+    width: 80%;
+    list-style: none;
+    margin-left: auto;
+}
+
+.dropdown_anchor{
+    color: rgb(184, 187, 191);
     padding: 1em .7em;
     text-decoration: none;
+    /* background-color: rgb(233, 32, 32); */
+    top: -10px;
+    left: -20px;
+    width: 230px;
+    height: 10px;
 
     display: flex;
     align-items: center;
     gap: .6rem;
 
     position: relative;
-    background-color: black;
     border-radius: 5px;
 }
 
+.dropdown_anchor span {
+    position: relative;
+    padding-left: 40px;
+    top: -4px;
+    scale: 1.2;
+
+}
+
+.dropdown_sub_check{
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    margin-left: -65%;
+    /* opacity: 0;  */
+    /*Para esconder el checkbox*/
+    cursor: pointer;
+}
+
+/* -------------------- CHECK BUTTON ---------------------*/
+/* Check button fondo*/
 .checktoggle{
-    height: 1em;
-    width: 1em;
+    height: 14px;
+    width: 29px;
+    right: 180px;
+    top: -3px;
     background:#222;
     appearance: none;
     border-radius: 160px;
@@ -308,26 +425,39 @@
     transition: 0.5s;
 }
 
+.dropdown_anchor .checktoggle{
+    height: 10px;
+    width: 26px;
+    right: 120px;
+}
+
 /* Botón activado (negro) */
 .checktoggle::before{
-    height: 1em;
-    width: 1em;
+    height: 14px;
+    width: 14px;
     position: absolute;
     top: 0;
-    left: 20px;
+    left: .2px;
     content: "";
     background: linear-gradient(to bottom, #444, #333);
     border-radius: 50%;
     transform: scale(0.9);
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5),
-                inset 0 4px 4px rgba(255, 255, 255, 0.2),
+                inset 0 4px 4px rgba(255, 253, 253, 0.2),
                 inset 0 -4px 4px rgba(255, 255, 255, 0.2);
     transition: 0.5s;
 }
 
+.dropdown_anchor .checktoggle::before {
+    height: 12px;
+    width: 12px;
+    left: 2px;
+    top: -1px;
+}
+
 /* Fondo Toggle desactivado */
 .checktoggle:checked{
-    background: #fff;
+    background: #c0bebe;
     box-shadow: inset 0 2px 60px rgba(0, 0, 0, 0.1),
                 inset 0 2px 8px rgba(0, 0, 0, 0.1),
                 inset 0 -4px 8px rgba(0, 0, 0, 0.05);
@@ -337,7 +467,19 @@
 /* Botón desactivado (blanco) */
 .checktoggle:checked::before{
     left: 1em;
-    top: 0;
+    top: 0px;
+    content: "";
+    background: linear-gradient(to bottom, #eaeaea, #f9f9f9);
+    border-radius: 50%;
+    transform: scale(0.9);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1),
+                inset 0 4px 4px rgba(255, 255, 255, 1),
+                inset 0 -4px 4px rgba(255, 255, 255, 1);
+}
+
+.dropdown_anchor .checktoggle:checked::before {
+    left: 15px;
+    top: -1px;
     content: "";
     background: linear-gradient(to bottom, #eaeaea, #f9f9f9);
     border-radius: 50%;

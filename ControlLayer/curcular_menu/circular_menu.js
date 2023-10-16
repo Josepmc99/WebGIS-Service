@@ -17,7 +17,7 @@ toggle.onclick = function(){
     });
 
     document.addEventListener("DOMContentLoaded", function () {
-        const layerControlIcon = document.getElementById("LayerControl");
+        const layerControlIcon = document.getElementById("layercontrol-icon");
         const layerDropdown = document.querySelector(".nav_menu");
     
         layerControlIcon.addEventListener("click", function (event) {

@@ -123,23 +123,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // -----------AJUSTES LAYER CONTROL-----------
 
-     // Obtén el checkbox de la Capa 1
-    var checkboxCapa1 = document.querySelector(".dropdown_list input[type='checkbox']");
+    //  // Obtén el checkbox de la Capa 1
+    // var checkboxCapa1 = document.querySelector(".dropdown_list input[type='checkbox']");
 
-    // Obtén el elemento .dropdown_content
-    var dropdownContent = document.querySelector(".dropdown_list");
+    // // Obtén el elemento .dropdown_content
+    // var dropdownContent = document.querySelector(".dropdown_list");
 
-    // Escucha los cambios en el estado del checkbox
-    checkboxCapa1.addEventListener("change", function () {
-        // Verifica si el checkbox está marcado
-        if (checkboxCapa1.checked) {
-            // Si está marcado, muestra el desplegable de las subcapas
-            dropdownContent.style.setProperty("--rows", "1fr");
-        } else {
-            // Si no está marcado, oculta el desplegable de las subcapas
-            dropdownContent.style.setProperty("--rows", "0fr");
-        }
-    });
+    // // Escucha los cambios en el estado del checkbox
+    // checkboxCapa1.addEventListener("change", function () {
+    //     // Verifica si el checkbox está marcado
+    //     if (checkboxCapa1.checked) {
+    //         // Si está marcado, muestra el desplegable de las subcapas
+    //         dropdownContent.style.setProperty("--rows", "1fr");
+    //     } else {
+    //         // Si no está marcado, oculta el desplegable de las subcapas
+    //         dropdownContent.style.setProperty("--rows", "0fr");
+    //     }
+    // });
 
 
         var wmsL_C_2017Visible = false;
@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var orto2022Visible = false;
 
 
-    document.querySelector(".sub_capa1").addEventListener("click", function () {
+    document.querySelector(".subcapa1").addEventListener("click", function () {
         // Cambia la visibilidad de la capa 1 cuando se hace clic en el menú
         if (wmsL_C_2017Visible) {
             mymap.removeLayer(wmsL_C_2017);
@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
         wmsL_C_2017Visible = !wmsL_C_2017Visible;
     });
 
-    document.querySelector(".sub_capa2").addEventListener("click", function () {
+    document.querySelector(".subcapa2").addEventListener("click", function () {
         // Cambia la visibilidad de la capa 2 cuando se hace clic en el menú
         if (wmsL_C_2022Visible) {
             mymap.removeLayer(wmsL_C_2022);
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
         wmsL_C_2022Visible = !wmsL_C_2022Visible;
     });
 
-    document.querySelector(".sub_capa3").addEventListener("click", function () {
+    document.querySelector(".subcapa3").addEventListener("click", function () {
         // Cambia la visibilidad de la capa 2 cuando se hace clic en el menú
         if (wmsErosionVisible) {
             mymap.removeLayer(wmsErosion);

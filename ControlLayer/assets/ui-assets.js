@@ -91,3 +91,77 @@ function toggleFullscreen() {
         }
     }
 }
+
+ //------------------------------------------- AJUSTES CONTROL LAYER -------------------------------------------------------/
+
+ //----------------- ABRIR/CERRAR MENÚ AL CLICAR EN EL ICONO DE LAYER CONTROL -----------------//
+
+// Obtén una referencia al botón "ui-LayerControl"
+const layerControlIcon = document.getElementById('layercontrol-icon');
+// Obtén una referencia al LayerControl_popup
+const layerControlPopup = document.getElementById('layer-control-popup');
+
+var layerControlHide = layerControlPopup.style.display = "none" 
+
+// Agrega un manejador de eventos al botón para mostrar u ocultar el popup
+layerControlIcon.addEventListener('click', function() {
+    // Verifica el estado actual del LayerControl_popup
+    if (layerControlPopup.style.display === "none" || layerControlPopup.style.display === "") {
+        // Si está oculto, muestra el popup
+        layerControlPopup.style.display = "block";
+        layerControlIcon.classList.add("active-option");
+    } else {
+        // Si está visible, oculta el popup
+        layerControlPopup.style.display = "none";
+        layerControlIcon.classList.remove("active-option");
+    }
+});
+ 
+ //----------------- ABRIR/CERRAR MENÚ AL CLICAR EN LA CAPA PRINCIPAL-----------------//
+
+// Obtén una lista de todos los elementos de flecha
+var arrowLayers = document.querySelectorAll('.dropdown_arrow');
+
+// Agrega un manejador de eventos de clic a cada elemento de flecha
+arrowLayers.forEach(function(arrowLayer) {
+    arrowLayer.addEventListener('click', function() {
+        // Obtén el valor del atributo "data-target" para determinar qué menú desplegable debe abrirse o cerrarse
+        var targetMenu = arrowLayer.getAttribute('data-target');
+
+        // Busca el menú desplegable correspondiente utilizando el atributo "data-menu"
+        var dropdownLayer = document.querySelector('.dropdown_sub[data-menu="' + targetMenu + '"]');
+
+        // Verifica si el menú desplegable está visible o no y cambia su visibilidad
+        if (dropdownLayer.style.display === 'none' || dropdownLayer.style.display === '') {
+            dropdownLayer.style.display = 'block'; // Abre el menú desplegable
+        } else {
+            dropdownLayer.style.display = 'none'; // Cierra el menú desplegable
+        }
+    });
+});
+
+// Para editar el texto del Layer Control
+
+const dropdownSpan = document.querySelector('.dropdown_span');
+
+dropdownSpan.addEventListener('dblclick', function() {
+    // Habilitar la edición
+    this.contentEditable = true;
+    this.focus(); // Colocar el foco en el elemento editado
+});
+
+dropdownSpan.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        // Guardar el nuevo contenido al presionar Enter
+        event.preventDefault();
+        this.blur(); // Deshabilitar la edición
+        // Aquí puedes guardar el nuevo nombre, por ejemplo, en una variable o enviarlo al servidor si es necesario
+    }
+});
+
+dropdownSpan.addEventListener('blur', function() {
+    // Deshabilitar la edición cuando se hace clic fuera del elemento
+    this.contentEditable = false;
+    // Aquí también puedes guardar el nuevo nombre
+});
+
