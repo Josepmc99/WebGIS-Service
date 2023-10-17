@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var mymap = L.map("map").setView([39.09567618381688, -0.219680134361635], 16);
 
     // Agrega una capa base, por ejemplo, una capa de OpenStreetMap
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    var baseLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 29,
     }).addTo(mymap);
 
@@ -82,13 +82,15 @@ document.addEventListener("DOMContentLoaded", function () {
   //------------------------------------------- CONTROL LAYER -------------------------------------------------------/
   
     // -----------CAPAS PRINCIPALES-----------
-    
-    // -----------CAPAS SECUNDARIAS-----------
 
     var wmsL_C_2017 = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
         layers: "Proyecto_Costas:L_C_2017",
          maxZoom: 29,
+         atribution: '<a>&copy IMEDES</a>'
     });
+    
+    // -----------CAPAS SECUNDARIAS-----------
+
     
     var wmsL_C_2022 = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
         layers: "Proyecto_Costas:L_C_2022",
@@ -105,111 +107,115 @@ document.addEventListener("DOMContentLoaded", function () {
         maxZoom: 29,
     });
 
-    // var wmsPrediction30years = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
-    //     layers: "Proyecto_Costas:prediction_30_years",
-    //     maxZoom: 29,
-    // });
-
-    // -----------CAPAS BASE-----------
-        
-    //Ortofoto 2022
-    var orto2022 = L.tileLayer.wms("https://terramapas.icv.gva.es/0202_2022CVAL0025", {
-        maxZoom: 25,
-        layers: "2022CVAL0025_RGB",
-        format: "image/png",
-        transparent: true,
-        attribution: "Atribución de la capa WMS"
+    var wmsPrediction30years = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
+        layers: "Proyecto_Costas:prediction_30_years",
+        maxZoom: 29,
     });
 
     // -----------AJUSTES LAYER CONTROL-----------
 
-    //  // Obtén el checkbox de la Capa 1
-    // var checkboxCapa1 = document.querySelector(".dropdown_list input[type='checkbox']");
 
-    // // Obtén el elemento .dropdown_content
-    // var dropdownContent = document.querySelector(".dropdown_list");
-
-    // // Escucha los cambios en el estado del checkbox
-    // checkboxCapa1.addEventListener("change", function () {
-    //     // Verifica si el checkbox está marcado
-    //     if (checkboxCapa1.checked) {
-    //         // Si está marcado, muestra el desplegable de las subcapas
-    //         dropdownContent.style.setProperty("--rows", "1fr");
-    //     } else {
-    //         // Si no está marcado, oculta el desplegable de las subcapas
-    //         dropdownContent.style.setProperty("--rows", "0fr");
-    //     }
-    // });
-
-
-        var wmsL_C_2017Visible = false;
-        var wmsL_C_2022Visible = false;
         var wmsEdifVisible = false;
         var wmsErosionVisible = false;
         var wmsPrediction30yearsVisible = false;
         var orto2022Visible = false;
 
+    //------------------------------------------- CAPAS SECUNDARIAS -------------------------------------------------------/
 
-    document.querySelector(".subcapa1").addEventListener("click", function () {
-        // Cambia la visibilidad de la capa 1 cuando se hace clic en el menú
-        if (wmsL_C_2017Visible) {
-            mymap.removeLayer(wmsL_C_2017);
-        } else {
+    document.getElementById("checkboxSub1").addEventListener("click", function () {
+        // Obtén el estado actual del checkbox
+        var sub1Checked = this.checked;
+
+        // Cambia la visibilidad de la capa 1 según el estado del checkbox
+        if (sub1Checked) {
             mymap.addLayer(wmsL_C_2017);
-        }
-        wmsL_C_2017Visible = !wmsL_C_2017Visible;
-    });
-
-    document.querySelector(".subcapa2").addEventListener("click", function () {
-        // Cambia la visibilidad de la capa 2 cuando se hace clic en el menú
-        if (wmsL_C_2022Visible) {
-            mymap.removeLayer(wmsL_C_2022);
         } else {
+            mymap.removeLayer(wmsL_C_2017);
+        }
+    });
+        // Activa la capa por defecto al cargar la página
+        document.getElementById("checkboxSub1").click();
+//---------------------------------------------------------------------------------------//
+    document.getElementById("checkboxSub2").addEventListener("change", function () {
+        // Obtén el estado actual del checkbox
+        var sub2Checked = this.checked;
+
+        // Cambia la visibilidad de la capa 2 según el estado del checkbox
+        if (sub2Checked) {
             mymap.addLayer(wmsL_C_2022);
-        }
-        wmsL_C_2022Visible = !wmsL_C_2022Visible;
-    });
-
-    document.querySelector(".subcapa3").addEventListener("click", function () {
-        // Cambia la visibilidad de la capa 2 cuando se hace clic en el menú
-        if (wmsErosionVisible) {
-            mymap.removeLayer(wmsErosion);
         } else {
+            mymap.removeLayer(wmsL_C_2022);
+        }
+    });
+        // Activa la capa por defecto al cargar la página
+        document.getElementById("checkboxSub2").click();
+//---------------------------------------------------------------------------------------//
+    document.getElementById("checkboxSub3").addEventListener("click", function () {
+        // Obtén el estado actual del checkbox
+        var sub3Checked = this.checked;
+
+        // Cambia la visibilidad de la Subcapa 1 según el estado del checkbox
+        if (sub3Checked) {
             mymap.addLayer(wmsErosion);
-        }
-        wmsErosionVisible = !wmsErosionVisible;
-    });
-
-    document.querySelector(".sub_capa4").addEventListener("click", function () {
-        // Cambia la visibilidad de la capa 2 cuando se hace clic en el menú
-        if (wmsEdifVisible) {
-            mymap.removeLayer(wmsEdif);
         } else {
+            mymap.removeLayer(wmsErosion);
+        }
+    });
+        // Activa la capa por defecto al cargar la página
+        document.getElementById("checkboxSub3").click();
+//---------------------------------------------------------------------------------------//
+    document.getElementById("checkboxSub4").addEventListener("click", function () {
+        // Obtén el estado actual del checkbox
+        var sub4Checked = this.checked;
+
+        // Cambia la visibilidad de la Subcapa 1 según el estado del checkbox
+        if (sub4Checked) {
             mymap.addLayer(wmsEdif);
-        }
-        wmsEdifVisible = !wmsEdifVisible;
-    });
-
-    document.querySelector(".sub_capa5").addEventListener("click", function () {
-        // Cambia la visibilidad de la capa 2 cuando se hace clic en el menú
-        if (wmsPrediction30yearsVisible) {
-            mymap.removeLayer(wmsPrediction30years);
         } else {
-            mymap.addLayer(wmsPrediction30years);
+            mymap.removeLayer(wmsEdif);
         }
-        wmsPrediction30yearsVisible = !wmsPrediction30yearsVisible;
     });
+        // Activa la capa por defecto al cargar la página
+        document.getElementById("checkboxSub4").click();
+//---------------------------------------------------------------------------------------//
+    // document.getElementById("checkboxSub5").addEventListener("click", function () {
+    //     // Obtén el estado actual del checkbox
+    //     var sub5Checked = this.checked;
 
-    document.querySelector(".sub_capa6").addEventListener("click", function () {
-        // Cambia la visibilidad de la capa 2 cuando se hace clic en el menú
-        if (orto2022Visible) {
-            mymap.removeLayer(orto2022);
-        } else {
-            mymap.addLayer(orto2022);
-        }
-        orto2022Visible = !orto2022Visible;
-    });
-    
+    //     // Cambia la visibilidad de la Subcapa 1 según el estado del checkbox
+    //     if (sub5Checked) {
+    //         mymap.addLayer(wmsPrediction30years);
+    //     } else {
+    //         mymap.removeLayer(wmsPrediction30years);
+    //     }
+    // });
+    //     // Activa la capa por defecto al cargar la página
+    //     document.getElementById("checkboxSub5").click();
+//---------------------------------------------------------------------------------------//
+// document.getElementById("checkboxSub6").addEventListener("click", function () {
+//     // Obtén el estado actual del checkbox
+//     var sub6Checked = this.checked;
+
+//     // Cambia la visibilidad de la Subcapa 1 según el estado del checkbox
+//     if (sub6Checked) {
+//         mymap.addLayer(wmsPrediction30years);
+//     } else {
+//         mymap.removeLayer(wmsPrediction30years);
+//     }
+// });
+//     // Activa la capa por defecto al cargar la página
+//     document.getElementById("checkboxSub6").click();
+
+
+
+    //------------------------------------------- CAPAS PRINCIPALES CONTROLAN LAS CAPAS SECUNDARIAS -------------------------------------------------------/
+
+
+
+
+
+
+
     //------------------------------------------- ASSET ADD BASE LAYERS -------------------------------------------------------/
 
     // Agrega un manejador de eventos clic a la opción "Estándar"
@@ -296,7 +302,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Agrega un manejador de eventos clic a la opción "Satélite 2022"
+    // Agrega un manejador de eventos clic a la opción "Catastro"
     const catastroOption = document.querySelector("[data-layer=layer_catastro]");
     catastroOption.addEventListener("click", function() {
         toggleBaseLayer("layer_catastro", L.tileLayer.wms("http://ovc.catastro.meh.es/cartografia/INSPIRE/spadgcwms.aspx", {
@@ -308,19 +314,18 @@ document.addEventListener("DOMContentLoaded", function () {
         catastro.addTo(mymap);
     });
 
-    // Agrega un manejador de eventos clic a la opción "Satélite 2022"
+    // Agrega un manejador de eventos clic a la opción "Nomenclator"
     const nomenclatorOption = document.querySelector("[data-layer=layer_nomenclator]");
     nomenclatorOption.addEventListener("click", function() {
         toggleBaseLayer("layer_nomenclator", L.tileLayer.wms("http://terramapas.icv.gva.es/toponimia_base", {
             layers: "NOMENCLATOR_ICV",
             format: "image/png",
             transparent: true,
-            attribution: "Atribución de la capa WMS"
         }));
         nomenclator.addTo(mymap);
     });
 
-    // Agrega un manejador de eventos clic a la opción "Satélite 2022"
+    // Agrega un manejador de eventos clic a la opción "Areas de Gestión Residuos"
     const gestionOption = document.querySelector("[data-layer=layer_areas_gestion]");
     gestionOption.addEventListener("click", function() {
         toggleBaseLayer("layer_areas_gestion", L.tileLayer.wms("http://carto.icv.gva.es/arcgis/services/tm_medio_ambiente/residuos/MapServer/WmsServer?", {
@@ -328,7 +333,6 @@ document.addEventListener("DOMContentLoaded", function () {
             maxZoom: 25,
             format: "image/png",
             transparent: true,
-            attribution: "Atribución de la capa WMS"
         }));
         areas_gestion.addTo(mymap);
     });

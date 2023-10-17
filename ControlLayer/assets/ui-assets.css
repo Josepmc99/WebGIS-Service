@@ -344,7 +344,7 @@
 .dropdown_arrow {
     position: relative;
     margin-left: 0;
-    left: 75px;
+    left: -145px;
     top: -5px;
     right: -10px;    
 }
@@ -407,18 +407,18 @@
 }
 
 /* -------------------- CHECK BUTTON ---------------------*/
-/* Check button fondo*/
+/* Fondo Toggle Desactivado*/
 .checktoggle{
     height: 14px;
     width: 29px;
-    right: 180px;
+    right: -30px;
     top: -3px;
-    background:#222;
     appearance: none;
     border-radius: 160px;
-    box-shadow: inset 0 8px 60px rgba(0, 0, 0, 0.1),
-                inset 0 8px 8px rgba(0, 0, 0, 0.1),
-                inset 0 -4px 4px rgba(0, 0, 0, 0.1);
+    background: #c0bebe;
+    box-shadow: inset 0 2px 60px rgba(0, 0, 0, 0.1),
+                inset 0 2px 8px rgba(0, 0, 0, 0.1),
+                inset 0 -4px 8px rgba(0, 0, 0, 0.05);
     position: relative;
     outline: none;
     cursor: pointer;;
@@ -455,12 +455,12 @@
     top: -1px;
 }
 
-/* Fondo Toggle desactivado */
+/* Fondo Toggle activado */
 .checktoggle:checked{
-    background: #c0bebe;
-    box-shadow: inset 0 2px 60px rgba(0, 0, 0, 0.1),
-                inset 0 2px 8px rgba(0, 0, 0, 0.1),
-                inset 0 -4px 8px rgba(0, 0, 0, 0.05);
+    background:#222;
+    box-shadow: inset 0 8px 60px rgba(0, 0, 0, 0.1),
+                inset 0 8px 8px rgba(0, 0, 0, 0.1),
+                inset 0 -4px 4px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -476,6 +476,7 @@
                 inset 0 4px 4px rgba(255, 255, 255, 1),
                 inset 0 -4px 4px rgba(255, 255, 255, 1);
 }
+
 
 .dropdown_anchor .checktoggle:checked::before {
     left: 15px;
