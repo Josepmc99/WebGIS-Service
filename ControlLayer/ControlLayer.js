@@ -83,45 +83,59 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // -----------CAPAS PRINCIPALES-----------
 
+    // -----------CAPAS SECUNDARIAS-----------
     var wmsL_C_2017 = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
         layers: "Proyecto_Costas:L_C_2017",
          maxZoom: 29,
          atribution: '<a>&copy IMEDES</a>'
     });
     
-    // -----------CAPAS SECUNDARIAS-----------
-
-    
-    var wmsL_C_2022 = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
+    var wmsL_C_2022 = L.Geoserver.wms("http://192.168.1.36:8080/geoserver/wms", {
         layers: "Proyecto_Costas:L_C_2022",
         maxZoom: 29,
     });
     
-    var wmsEdif = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
+    var wmsEdif = L.Geoserver.wms("http://192.168.1.36:8080/geoserver/wms", {
         layers: "Proyecto_Costas:Edif",
         maxZoom: 29,
     });
+
+    var wmsEdif_Bajo = L.Geoserver.wms("http://192.168.1.36:8080/geoserver/wms", {
+        layers: "Proyecto_Costas:Edif_bajo",
+        maxZoom: 29,
+        atribution: '&copy IMEDES',
+    });
+
+    var wmsEdif_Medio = L.Geoserver.wms("http://192.168.1.36:8080/geoserver/wms", {
+        layers: "Proyecto_Costas:Edif_medio",
+        maxZoom: 29,
+        atribution: '&copy IMEDES',
+    });
+
+    var wmsEdif_Alto = L.Geoserver.wms("http://192.168.1.36:8080/geoserver/wms", {
+        layers: "Proyecto_Costas:Edif_alto",
+        maxZoom: 29,
+        atribution: '&copy IMEDES',
+    });
     
-    var wmsErosion = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
-        layers: "Proyecto_Costas:perdida_ganancia",
+    var wmsErosion = L.Geoserver.wms("http://192.168.1.36:8080/geoserver/wms", {
+        layers: "Proyecto_Costas:erosion",
         maxZoom: 29,
     });
 
-    var wmsPrediction30years = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
+    var wmsPrediction30years = L.Geoserver.wms("http://192.168.1.36:8080/geoserver/wms", {
         layers: "Proyecto_Costas:prediction_30_years",
         maxZoom: 29,
     });
 
     // -----------AJUSTES LAYER CONTROL-----------
 
-
-        var wmsEdifVisible = false;
-        var wmsErosionVisible = false;
-        var wmsPrediction30yearsVisible = false;
-        var orto2022Visible = false;
-
+    //------------------------------------------- CAPAS PRINCIPALES -------------------------------------------------------/
+    document.getElementById("checkboxCapa1").click();
+    document.getElementById("checkboxCapa2").click();
+    // document.getElementById("checkboxCapa3").click();
     //------------------------------------------- CAPAS SECUNDARIAS -------------------------------------------------------/
-
+    
     document.getElementById("checkboxSub1").addEventListener("click", function () {
         // Obtén el estado actual del checkbox
         var sub1Checked = this.checked;
@@ -170,49 +184,185 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Cambia la visibilidad de la Subcapa 1 según el estado del checkbox
         if (sub4Checked) {
-            mymap.addLayer(wmsEdif);
+            mymap.addLayer(wmsEdif_Bajo);
         } else {
-            mymap.removeLayer(wmsEdif);
+            mymap.removeLayer(wmsEdif_Bajo);
         }
     });
         // Activa la capa por defecto al cargar la página
         document.getElementById("checkboxSub4").click();
 //---------------------------------------------------------------------------------------//
-    // document.getElementById("checkboxSub5").addEventListener("click", function () {
-    //     // Obtén el estado actual del checkbox
-    //     var sub5Checked = this.checked;
+    document.getElementById("checkboxSub5").addEventListener("click", function () {
+        // Obtén el estado actual del checkbox
+        var sub5Checked = this.checked;
 
-    //     // Cambia la visibilidad de la Subcapa 1 según el estado del checkbox
-    //     if (sub5Checked) {
-    //         mymap.addLayer(wmsPrediction30years);
-    //     } else {
-    //         mymap.removeLayer(wmsPrediction30years);
-    //     }
-    // });
-    //     // Activa la capa por defecto al cargar la página
-    //     document.getElementById("checkboxSub5").click();
+        // Cambia la visibilidad de la Subcapa 1 según el estado del checkbox
+        if (sub5Checked) {
+            mymap.addLayer(wmsEdif_Medio);
+        } else {
+            mymap.removeLayer(wmsEdif_Medio);
+        }
+    });
+        // Activa la capa por defecto al cargar la página
+        document.getElementById("checkboxSub5").click();
 //---------------------------------------------------------------------------------------//
-// document.getElementById("checkboxSub6").addEventListener("click", function () {
-//     // Obtén el estado actual del checkbox
-//     var sub6Checked = this.checked;
+    document.getElementById("checkboxSub6").addEventListener("click", function () {
+        // Obtén el estado actual del checkbox
+        var sub6Checked = this.checked;
 
-//     // Cambia la visibilidad de la Subcapa 1 según el estado del checkbox
-//     if (sub6Checked) {
-//         mymap.addLayer(wmsPrediction30years);
-//     } else {
-//         mymap.removeLayer(wmsPrediction30years);
-//     }
-// });
-//     // Activa la capa por defecto al cargar la página
-//     document.getElementById("checkboxSub6").click();
+        // Cambia la visibilidad de la Subcapa 1 según el estado del checkbox
+        if (sub6Checked) {
+            mymap.addLayer(wmsEdif_Alto);
+        } else {
+            mymap.removeLayer(wmsEdif_Alto);
+        }
+    });
+        // Activa la capa por defecto al cargar la página
+        document.getElementById("checkboxSub6").click();
+
+//---------------------------------------------------------------------------------------//
+    document.getElementById("checkboxSub7").addEventListener("click", function () {
+        // Obtén el estado actual del checkbox
+        var sub7Checked = this.checked;
+
+        // Cambia la visibilidad de la Subcapa 1 según el estado del checkbox
+        if (sub7Checked) {
+            mymap.addLayer(wmsPrediction30years);
+        } else {
+            mymap.removeLayer(wmsPrediction30years);
+        }
+    });
+        // Activa la capa por defecto al cargar la página
+        document.getElementById("checkboxSub7").click();
 
 
 
     //------------------------------------------- CAPAS PRINCIPALES CONTROLAN LAS CAPAS SECUNDARIAS -------------------------------------------------------/
 
+    // Obtén una referencia al checkbox "checkboxCapa1"
+    const checkboxCapa1 = document.getElementById("checkboxCapa1");
 
+    // Obtén una lista de todos los checkboxes de subcapas dentro de "dropdown_sub"
+    const checkboxSubcapas1 = document.querySelectorAll(".dropdown_sub .checktoggle.capa1");
 
+    // Obtén una lista de los layers correspondientes a las subcapas
+    const subcapaLayers1 = {
+        checkboxSub1: wmsL_C_2017,
+        checkboxSub2: wmsL_C_2022,
+        checkboxSub3: wmsErosion,
+    };
+    // Agrega un evento de cambio al checkbox "checkboxCapa1"
+    checkboxCapa1.addEventListener("change", function () {
+        // Verifica si el checkbox "checkboxCapa1" está desactivado
+        if (!checkboxCapa1.checked) {
+            // Desactiva todos los checkboxes de subcapas
+            checkboxSubcapas1.forEach(function (checkbox) {
+                checkbox.checked = false;
+            });
+            // Desactiva todos los layers correspondientes a las subcapas
+            for (const subcapaId in subcapaLayers1) {
+                const layer = subcapaLayers1[subcapaId];
+                mymap.removeLayer(layer);
+            }
 
+        } else {
+            // Desactiva todos los checkboxes de subcapas
+            checkboxSubcapas1.forEach(function (checkbox) {
+                checkbox.checked = true;
+                // También puedes ocultar o realizar otras acciones según tus necesidades
+            });
+            // Activa todos los layers correspondientes a las subcapas
+            for (const subcapaId in subcapaLayers1) {
+                const layer = subcapaLayers1[subcapaId];
+                mymap.addLayer(layer);
+                // También puedes realizar otras acciones según tus necesidades
+            }
+        }
+    });
+
+    //------------------------------------------------------------------------//
+
+    // Obtén una referencia al checkbox "checkboxCapa1"
+    const checkboxCapa2 = document.getElementById("checkboxCapa2");
+
+    // Obtén una lista de todos los checkboxes de subcapas dentro de "dropdown_sub"
+    const checkboxSubcapas2 = document.querySelectorAll(".dropdown_sub .checktoggle.capa2");
+
+    const subcapaLayers2 = {
+        checkboxSub4: wmsEdif_Bajo,
+        checkboxSub5: wmsEdif_Medio,
+        checkboxSub6: wmsEdif_Alto,
+    };
+
+    // Agrega un evento de cambio al checkbox "checkboxCapa1"
+    checkboxCapa2.addEventListener("change", function () {
+        // Verifica si el checkbox "checkboxCapa1" está desactivado
+        if (!checkboxCapa2.checked) {
+            // Desactiva todos los checkboxes de subcapas
+            checkboxSubcapas2.forEach(function (checkbox) {
+                checkbox.checked = false;
+            });
+            // Desactiva todos los layers correspondientes a las subcapas
+            for (const subcapaId in subcapaLayers2) {
+                const layer = subcapaLayers2[subcapaId];
+                mymap.removeLayer(layer);
+            }
+
+        } else {
+            // Desactiva todos los checkboxes de subcapas
+            checkboxSubcapas2.forEach(function (checkbox) {
+                checkbox.checked = true;
+                // También puedes ocultar o realizar otras acciones según tus necesidades
+            });
+            // Activa todos los layers correspondientes a las subcapas
+            for (const subcapaId in subcapaLayers2) {
+                const layer = subcapaLayers2[subcapaId];
+                mymap.addLayer(layer);
+                // También puedes realizar otras acciones según tus necesidades
+            }
+        }
+    });
+
+    //------------------------------------------------------------------------//
+
+    // Obtén una referencia al checkbox "checkboxCapa1"
+    const checkboxCapa3 = document.getElementById("checkboxCapa3");
+
+    // Obtén una lista de todos los checkboxes de subcapas dentro de "dropdown_sub"
+    const checkboxSubcapas3 = document.querySelectorAll(".dropdown_sub .checktoggle.capa3");
+
+    const subcapaLayers3 = {
+        checkboxSub7: wmsPrediction30years,
+    };
+
+    // Agrega un evento de cambio al checkbox "checkboxCapa1"
+    checkboxCapa3.addEventListener("change", function () {
+        // Verifica si el checkbox "checkboxCapa3" está desactivado
+        if (!checkboxCapa3.checked) {
+            // Desactiva todos los checkboxes de subcapas
+            checkboxSubcapas3.forEach(function (checkbox) {
+                checkbox.checked = false;
+            });
+            // Desactiva todos los layers correspondientes a las subcapas
+            for (const subcapaId in subcapaLayers3) {
+                const layer = subcapaLayers3[subcapaId];
+                mymap.removeLayer(layer);
+            }
+
+        } else {
+            // Desactiva todos los checkboxes de subcapas
+            checkboxSubcapas3.forEach(function (checkbox) {
+                checkbox.checked = true;
+                // También puedes ocultar o realizar otras acciones según tus necesidades
+            });
+            // Activa todos los layers correspondientes a las subcapas
+            for (const subcapaId in subcapaLayers3) {
+                const layer = subcapaLayers3[subcapaId];
+                mymap.addLayer(layer);
+                // También puedes realizar otras acciones según tus necesidades
+            }
+        }
+    });
 
 
 
@@ -389,5 +539,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     }
+
 
 });

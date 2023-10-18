@@ -308,6 +308,13 @@
 
 .dropdown_span {
     width: 100px; /* Ancho fijo para el elemento que contiene el texto */
+    padding-left: 10px;
+    font-size: 12px;
+}
+
+.dropdown_span.sub {
+    width: 100px; /* Ancho fijo para el elemento que contiene el texto */
+    padding-left: 35px;
 }
 
 .dropdown_link{
@@ -479,7 +486,7 @@
 
 
 .dropdown_anchor .checktoggle:checked::before {
-    left: 15px;
+    left: 1em;
     top: -1px;
     content: "";
     background: linear-gradient(to bottom, #eaeaea, #f9f9f9);
