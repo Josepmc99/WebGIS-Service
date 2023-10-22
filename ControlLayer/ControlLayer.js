@@ -84,46 +84,46 @@ document.addEventListener("DOMContentLoaded", function () {
     // -----------CAPAS PRINCIPALES-----------
 
     // -----------CAPAS SECUNDARIAS-----------
-    var wmsL_C_2017 = L.Geoserver.wms("http://localhost:8080/geoserver/wms", {
+    var wmsL_C_2017 = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
         layers: "Proyecto_Costas:L_C_2017",
          maxZoom: 29,
          atribution: '<a>&copy IMEDES</a>'
     });
     
-    var wmsL_C_2022 = L.Geoserver.wms("http://192.168.1.36:8080/geoserver/wms", {
+    var wmsL_C_2022 = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
         layers: "Proyecto_Costas:L_C_2022",
         maxZoom: 29,
     });
     
-    var wmsEdif = L.Geoserver.wms("http://192.168.1.36:8080/geoserver/wms", {
+    var wmsEdif = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
         layers: "Proyecto_Costas:Edif",
         maxZoom: 29,
     });
 
-    var wmsEdif_Bajo = L.Geoserver.wms("http://192.168.1.36:8080/geoserver/wms", {
+    var wmsEdif_Bajo = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
         layers: "Proyecto_Costas:Edif_bajo",
         maxZoom: 29,
         atribution: '&copy IMEDES',
     });
 
-    var wmsEdif_Medio = L.Geoserver.wms("http://192.168.1.36:8080/geoserver/wms", {
+    var wmsEdif_Medio = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
         layers: "Proyecto_Costas:Edif_medio",
         maxZoom: 29,
         atribution: '&copy IMEDES',
     });
 
-    var wmsEdif_Alto = L.Geoserver.wms("http://192.168.1.36:8080/geoserver/wms", {
+    var wmsEdif_Alto = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
         layers: "Proyecto_Costas:Edif_alto",
         maxZoom: 29,
         atribution: '&copy IMEDES',
     });
     
-    var wmsErosion = L.Geoserver.wms("http://192.168.1.36:8080/geoserver/wms", {
+    var wmsErosion = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
         layers: "Proyecto_Costas:erosion",
         maxZoom: 29,
     });
 
-    var wmsPrediction30years = L.Geoserver.wms("http://192.168.1.36:8080/geoserver/wms", {
+    var wmsPrediction30years = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
         layers: "Proyecto_Costas:prediction_30_years",
         maxZoom: 29,
     });
