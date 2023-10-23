@@ -9,3 +9,22 @@ WebGIS-Service_v.0.2
   - Assets (Base Layers Control, Legend, Max Expand) added
 WebGIS-Service_v.0.2.1
   - Asset Layer Control added
+WebGIS-Service_v.0.3
+  - Asset Draw Polygons
+  - Asset Add Markers
+WebGIS-Service_v.0.4
+  - Ajustments in Layer Control
+  - Ajustments in Circular Menu
+  - WMS replacement for Geojson files
+WebGIS-Service_v.0.4.1
+  - Ajustments in Layer Control
+  - Ajustments in Geojson files
+WebGIS-Service_v.0.4.2
+  - Ajustments in Geojson files
+WebGIS-Service_v.0.4.3
+  - Upload in WebHost
+WebGIS-Service_v.0.4.4
+  - Upload in WebHost
+  - Errors correction
+WebGIS-Service_v.0.4.5
+  - Stable version of WebGIS-Service
