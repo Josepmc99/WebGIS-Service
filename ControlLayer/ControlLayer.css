@@ -9,18 +9,9 @@ body{
 }
 
 .nav{
-    background-color: #830248;
-
-    --img1: scale(1);
-    --img2: scale(0);
+    background-color: #578e5f;
 }
 
-.nav:has( .dropdown:target ){
-    --img1: scale(0);
-    --img2: scale(1);
-
-    --clip: inset(0 0 0 0);
-}
 
 .nav_container{
     width: 100%;
@@ -37,8 +28,9 @@ body{
 }
 
 .nav_title{
-    color: #fff;
-    grid-area: title;
+    color: black;
+    padding-left: 30px;
+    text-transform: uppercase;
 }
 
 .nav_menu{
@@ -52,6 +44,27 @@ body{
 .nav_menu--second{
     transform: var(--img2);
     margin-right: 20px;
+}
+
+.nav .IMEDES {
+    position: relative;
+    height: 50px;
+    right: 50px;
+    z-index: 99;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.contacto{
+    position: absolute;
+    right: 200px;
+    margin-left: 90%;
+    text-decoration:none;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: italic;
+    font-size: 20px;
+    /* text-transform: uppercase; */
+    color: black;
 }
 
 .nav_icon{
