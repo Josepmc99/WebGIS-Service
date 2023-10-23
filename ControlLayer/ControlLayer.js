@@ -81,52 +81,156 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //------------------------------------------- CONTROL LAYER -------------------------------------------------------/
   
-    // -----------CAPAS PRINCIPALES-----------
+    // -----------GEOJSON-----------
+    var wmsL_C_2017 = L.layerGroup(); 
+    var wmsL_C_2022 = L.layerGroup();
+    var wmsEdif_Bajo = L.layerGroup();
+    var wmsEdif_Medio = L.layerGroup();
+    var wmsEdif_Alto = L.layerGroup();
+    var wmsPrediction30years = L.layerGroup();
 
-    // -----------CAPAS SECUNDARIAS-----------
-    var wmsL_C_2017 = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
-        layers: "Proyecto_Costas:L_C_2017",
-         maxZoom: 29,
-         atribution: '<a>&copy IMEDES</a>'
+    //Agregar Geojson
+    var wmsL_C_2017 = L.geoJSON(playa2017,{
+        onEachFeature: function(feature,layer){
+            layer.bindPopup('<b>Superficie de playa en </b>' + feature.properties.Year)
+        },
+        style:{
+            fillColor: '#8f8863',
+            fillOpacity:0.7,
+            color: '#6f6b56',
+            weight: 1,
+        }
     });
+
+    var wmsL_C_2022 = L.geoJSON(playa2022,{
+        onEachFeature: function(feature,layer){
+            layer.bindPopup('<b>Superficie de playa en </b>' + feature.properties.Year)
+        },
+        style:{
+            fillColor: '#e9e0b2',
+            fillOpacity:0.7,
+            color: '#b9b080',
+            weight: 1,
+        }
+    });
+
+    var wmsErosion = L.geoJSON(perdida_ganancia,{
+        onEachFeature: function(feature,layer){
+            layer.bindPopup(feature.properties.Cambios + '<b> de arena </b>')
+        },
+        style: function(feature) {
+            var columna = feature.properties.Cambios;
+
+            //Asignar colores según categoría
+            var fillColor = columna === 'Pérdida' ? 'red' : 'green';
+            var fillOpacity = 0.4;
+            var color = 'none';
+
+            return {
+                fillColor: fillColor,
+                fillOpacity: fillOpacity,
+                color: color
+            };
+        }
+    });
+
+    var wmsEdif_Bajo = L.geoJSON(edif_bajo,{
+        onEachFeature: function(feature,layer){
+            layer.bindPopup('<b> Valor económico </b>' + feature.properties.Valor)
+        },
+        style:{ 
+            fillColor: 'green',
+            fillOpacity: 0.2,
+            color: 'green',   
+            weight: 0.2,
+        }
+    });
+
+    var wmsEdif_Medio = L.geoJSON(edif_medio,{
+        onEachFeature: function(feature,layer){
+            layer.bindPopup('<b> Valor económico </b>' + feature.properties.Valor)
+        },
+        style:{ 
+            fillColor: 'yellow',
+            fillOpacity: 0.2,
+            color: 'yellow',   
+            weight: 0.2,
+        }
+    });
+
+    var wmsEdif_Alto = L.geoJSON(edif_alto, {
+        onEachFeature: function(feature, layer) {
+            layer.bindPopup('<b> Valor económico </b>' + feature.properties.Valor);
+        },
+        style:{ 
+            fillColor: 'red',
+            fillOpacity: 0.2,
+            color: 'red',   
+            weight: 0.2,
+        }
+    });
+
+    var wmsPrediction30years = L.geoJSON(prediction30years, {
+        onEachFeature: function(feature, layer) {
+            layer.bindPopup('<b> Riesgo de inundación </b>');
+        },
+        style:{ 
+            fillColor: 'red',
+            fillOpacity: 0.2,
+            color: 'red',   
+            weight: 0.2,
+        }
+    });
+
+
+
     
-    var wmsL_C_2022 = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
-        layers: "Proyecto_Costas:L_C_2022",
-        maxZoom: 29,
-    });
+
+
+    // -----------WMS-----------
+    // var wmsL_C_2017 = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
+    //     layers: "Proyecto_Costas:L_C_2017",
+    //      maxZoom: 29,
+    //      atribution: '<a>&copy IMEDES</a>'
+    // });
     
-    var wmsEdif = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
-        layers: "Proyecto_Costas:Edif",
-        maxZoom: 29,
-    });
-
-    var wmsEdif_Bajo = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
-        layers: "Proyecto_Costas:Edif_bajo",
-        maxZoom: 29,
-        atribution: '&copy IMEDES',
-    });
-
-    var wmsEdif_Medio = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
-        layers: "Proyecto_Costas:Edif_medio",
-        maxZoom: 29,
-        atribution: '&copy IMEDES',
-    });
-
-    var wmsEdif_Alto = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
-        layers: "Proyecto_Costas:Edif_alto",
-        maxZoom: 29,
-        atribution: '&copy IMEDES',
-    });
+    // var wmsL_C_2022 = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
+    //     layers: "Proyecto_Costas:L_C_2022",
+    //     maxZoom: 29,
+    // });
     
-    var wmsErosion = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
-        layers: "Proyecto_Costas:erosion",
-        maxZoom: 29,
-    });
+    // var wmsEdif = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
+    //     layers: "Proyecto_Costas:Edif",
+    //     maxZoom: 29,
+    // });
 
-    var wmsPrediction30years = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
-        layers: "Proyecto_Costas:prediction_30_years",
-        maxZoom: 29,
-    });
+    // var wmsEdif_Bajo = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
+    //     layers: "Proyecto_Costas:Edif_bajo",
+    //     maxZoom: 29,
+    //     atribution: '&copy IMEDES',
+    // });
+
+    // var wmsEdif_Medio = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
+    //     layers: "Proyecto_Costas:Edif_medio",
+    //     maxZoom: 29,
+    //     atribution: '&copy IMEDES',
+    // });
+
+    // var wmsEdif_Alto = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
+    //     layers: "Proyecto_Costas:Edif_alto",
+    //     maxZoom: 29,
+    //     atribution: '&copy IMEDES',
+    // });
+    
+    // var wmsErosion = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
+    //     layers: "Proyecto_Costas:erosion",
+    //     maxZoom: 29,
+    // });
+
+    // var wmsPrediction30years = L.Geoserver.wms("http://localhost:8080/geoserver/Proyecto_Costas/wms?service=WMS", {
+    //     layers: "Proyecto_Costas:prediction_30_years",
+    //     maxZoom: 29,
+    // });
 
     // -----------AJUSTES LAYER CONTROL-----------
 
@@ -233,7 +337,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
         // Activa la capa por defecto al cargar la página
-        document.getElementById("checkboxSub7").click();
+        // document.getElementById("checkboxSub7").click();
 
 
 
