@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var mymap = L.map("map").setView([39.09567618381688, -0.219680134361635], 16);
+    const mymap = L.map("map").setView([39.09567618381688, -0.219680134361635], 16);
+
 
     // Agrega una capa base, por ejemplo, una capa de OpenStreetMap
     var baseLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -617,10 +618,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     let drawingMode = null; // Variable para almacenar el polígono dibujado
+    let drawingContainer = document.createElement('div'); // Crea un div contenedor
+    const drawnPolygons = [];
 
     function startDrawingPolygon(e) {
         if (drawingMode === null) {
             drawingMode = L.polygon([e.latlng], { color: 'blue' }).addTo(mymap);
+            // Agrega el polígono al array de polígonos dibujados
+            drawnPolygons.push(drawingMode);
+    
+            // Agrega el div del polígono al contenedor
+            drawingContainer.appendChild(polygonDiv);
         } else {
             drawingMode.addLatLng(e.latlng);
         }
@@ -644,5 +652,57 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Agrega el contenedor al cuerpo del documento o a un elemento específico
+    document.body.appendChild(drawingContainer);
 
+    //------------------------------------------- COLOR PALETTE ASSET -------------------------------------------------------/
+    const colorItems = document.querySelectorAll('.color-item');
+
+    // Agrega un evento de clic a los elementos de color en el menú
+    colorItems.forEach(item => {
+        item.addEventListener('click', function () {
+            const idSelected = this.id;
+
+            // Cambia el color del polígono en proceso de dibujo (si lo hay)
+            if (drawingMode) {
+                drawingMode.setStyle({ color: idSelected });
+            } else {
+                // Cambia el color de los polígonos existentes
+                for (const polygon in drawnPolygons) {
+                    drawnPolygons[polygon].setStyle({ color: idSelected });
+                }
+            }
+        });
+    });
+
+    // Agrega un evento de doble clic para completar el dibujo de un polígono
+    mymap.on('dblclick', function (e) {
+        if (drawingMode) {
+            mymap.off('click', startDrawingPolygon);
+            mymap.off('dblclick', finishDrawingPolygon);
+            drawnPolygons[drawingMode] = drawingMode; // Almacena el polígono y su color
+            drawingMode = null; // Restablece la variable de dibujo
+        }
+    });
+
+    // Agrega un evento de clic para iniciar el dibujo de un polígono
+    mymap.on('click', startDrawingPolygon);
+    function startDrawingPolygon(e) {
+        if (drawingMode === null) {
+            drawingMode = L.polygon([e.latlng], { color: 'blue' }).addTo(mymap);
+        } else {
+            drawingMode.addLatLng(e.latlng);
+        }
+    }
+
+    // Agrega un evento de doble clic para finalizar el dibujo de un polígono
+    mymap.on('dblclick', finishDrawingPolygon);
+    function finishDrawingPolygon(e) {
+        if (drawingMode) {
+            mymap.off('click', startDrawingPolygon);
+            mymap.off('dblclick', finishDrawingPolygon);
+            drawnPolygons[drawingMode] = drawingMode; // Almacena el polígono y su color
+            drawingMode = null; // Restablece la variable de dibujo
+        }
+    }
 });

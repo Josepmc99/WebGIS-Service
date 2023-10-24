@@ -455,7 +455,7 @@
     transition: 0.5s;
 }
 
-.dropdown_anchor .checktoggle::before {
+.dropdown_anchor .checktoggle::before{
     height: 12px;
     width: 12px;
     left: 2px;
@@ -497,3 +497,100 @@
                 inset 0 -4px 4px rgba(255, 255, 255, 1);
 }
 
+/*--------------------- ASSET CONTOL LAYER ----------------*/
+.color-control_popup {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    bottom: -200px;
+    right: 20px; 
+    color: white;
+    background-color: rgb(41, 41, 41);
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.color-control_popup p {
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-style: italic;
+    z-index: 991;
+}
+
+.color-control_popup ul {
+    list-style: none;
+    padding: 24px;
+    display: grid;
+    grid-gap: 14px;
+    grid-template-columns: repeat(5, 1fr);
+    border-radius: 8px;
+}
+
+.color-control_popup ul li {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s;
+
+}
+
+.color-control_popup ul li:hover {
+    transform: scale(1.1);
+}
+
+.color-item.active {
+    border-color: red;
+    border-width: 20px;
+}
+
+#red{
+    background-color: rgba(192, 52, 52, 0.958);
+}
+
+#green{
+    background-color: rgba(83, 178, 70, 0.958);
+}
+
+#blue{
+    background-color: rgba(82, 151, 215, 0.958);;
+}
+
+#yellow{
+    background-color: rgba(234, 215, 67, 0.958);;
+}
+
+#purple{
+    background-color: rgba(194, 72, 200, 0.958);;
+}
+
+.polygon.red {
+    background-color: rgba(192, 52, 52, 0.958);
+    color: rgba(192, 52, 52, 0.958);
+}
+
+.polygon.green {
+    background-color: rgba(83, 178, 70, 0.958);
+    color: rgba(83, 178, 70, 0.958);
+}
+
+.polygon.blue {
+    background-color: rgba(82, 151, 215, 0.958);
+    color: rgba(82, 151, 215, 0.958);
+}
+
+.polygon.yellow {
+    background-color: rgba(234, 215, 67, 0.958);
+    color: rgba(234, 215, 67, 0.958);
+}
+
+.polygon.purple {
+    background-color: rgba(194, 72, 200, 0.958);
+    color: rgba(194, 72, 200, 0.958);
+}
