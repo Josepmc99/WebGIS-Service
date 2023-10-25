@@ -505,9 +505,9 @@
     bottom: -200px;
     right: 20px; 
     color: white;
-    background-color: rgb(41, 41, 41);
+    background-color: rgb(20, 20, 20);
     border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px rgba(43, 43, 43, 0.2);
     justify-content: center;
     align-items: center;
     display: flex;
@@ -515,6 +515,8 @@
 }
 
 .color-control_popup p {
+    position: relative;
+    top: -50px;
     text-transform: uppercase;
     font-size: 10px;
     letter-spacing: 1px;
@@ -523,74 +525,88 @@
     z-index: 991;
 }
 
-.color-control_popup ul {
-    list-style: none;
-    padding: 24px;
+.styles_container {
+    position: relative;
+    top: -40px;
     display: grid;
-    grid-gap: 14px;
-    grid-template-columns: repeat(5, 1fr);
-    border-radius: 8px;
+    grid-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
 }
 
-.color-control_popup ul li {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
+.color_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+    border-radius: 5px;
+    border: #636262;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: rgb(41, 41, 41);
     cursor: pointer;
-    transition: transform 0.3s;
-
 }
 
-.color-control_popup ul li:hover {
-    transform: scale(1.1);
+label {
+    font-family:sans-serif;
+    font-size: 10px;
 }
 
-.color-item.active {
-    border-color: red;
-    border-width: 20px;
+/*-------- Style 1 ----------*/
+#style1 {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 28px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
-#red{
-    background-color: rgba(192, 52, 52, 0.958);
+#style1::-webkit-color-swatch{
+    border-radius: 50%;
 }
 
-#green{
-    background-color: rgba(83, 178, 70, 0.958);
+#style1::-moz-color-swatch{
+    border-radius: 50%;
 }
 
-#blue{
-    background-color: rgba(82, 151, 215, 0.958);;
+/*-------- Style 2 ----------*/
+#style2 {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 28px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
-#yellow{
-    background-color: rgba(234, 215, 67, 0.958);;
+#style2::-webkit-color-swatch{
+    border-radius: 50%;
 }
 
-#purple{
-    background-color: rgba(194, 72, 200, 0.958);;
+#style2::-moz-color-swatch{
+    border-radius: 50%;
 }
 
-.polygon.red {
-    background-color: rgba(192, 52, 52, 0.958);
-    color: rgba(192, 52, 52, 0.958);
+/*-------- Style 3 ----------*/
+#style3 {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 28px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
-.polygon.green {
-    background-color: rgba(83, 178, 70, 0.958);
-    color: rgba(83, 178, 70, 0.958);
+#style3::-webkit-color-swatch{
+    border-radius: 50%;
 }
 
-.polygon.blue {
-    background-color: rgba(82, 151, 215, 0.958);
-    color: rgba(82, 151, 215, 0.958);
-}
-
-.polygon.yellow {
-    background-color: rgba(234, 215, 67, 0.958);
-    color: rgba(234, 215, 67, 0.958);
-}
-
-.polygon.purple {
-    background-color: rgba(194, 72, 200, 0.958);
-    color: rgba(194, 72, 200, 0.958);
+#style3::-moz-color-swatch{
+    border-radius: 50%;
 }

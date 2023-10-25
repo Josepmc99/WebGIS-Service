@@ -100,6 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
             fillOpacity:0.7,
             color: '#6f6b56',
             weight: 1,
+            attribution:'<a>&copy IMEDES</a>',
         }
     });
 
@@ -112,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
             fillOpacity:0.7,
             color: '#b9b080',
             weight: 1,
+            attribution:'<a>&copy IMEDES</a>',
         }
     });
 
@@ -126,11 +128,13 @@ document.addEventListener("DOMContentLoaded", function () {
             var fillColor = columna === 'Pérdida' ? 'red' : 'green';
             var fillOpacity = 0.4;
             var color = 'none';
+            
 
             return {
                 fillColor: fillColor,
                 fillOpacity: fillOpacity,
-                color: color
+                color: color,
+                attribution:'<a>&copy IMEDES</a>',
             };
         }
     });
@@ -144,6 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
             fillOpacity: 0.2,
             color: 'green',   
             weight: 0.2,
+            attribution:'<a>&copy IMEDES</a>',
         }
     });
 
@@ -156,6 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
             fillOpacity: 0.2,
             color: 'yellow',   
             weight: 0.2,
+            attribution:'<a>&copy IMEDES</a>',
         }
     });
 
@@ -168,6 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
             fillOpacity: 0.2,
             color: 'red',   
             weight: 0.2,
+            attribution:'<a>&copy IMEDES</a>',
         }
     });
 
@@ -180,6 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
             fillOpacity: 0.2,
             color: 'red',   
             weight: 0.2,
+            attribution:'<a>&copy IMEDES</a>',
         }
     });
 
@@ -705,4 +713,13 @@ document.addEventListener("DOMContentLoaded", function () {
             drawingMode = null; // Restablece la variable de dibujo
         }
     }
+
+    document.getElementById("bars").addEventListener("click", function() {
+        // Cuando se hace clic en el ícono, alterna el estado del checkbox
+        document.getElementById("check_menu").checked = !document.getElementById("check_menu").checked;
+    });
+    document.getElementById("times").addEventListener("click", function() {
+        // Cuando se hace clic en el ícono, alterna el estado del checkbox
+        document.getElementById("check_menu").checked = !document.getElementById("check_menu").checked;
+    });
 });

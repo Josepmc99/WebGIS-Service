@@ -165,4 +165,3 @@ dropdownSpan.addEventListener('blur', function() {
     this.contentEditable = false;
     // Aquí también puedes guardar el nuevo nombre
 });
-

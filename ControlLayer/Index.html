@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="assets/ui-assets.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-better-filelayer@0.1.1/dist/leaflet.betterfilelayer.css"
           crossorigin="anonymous" referrerpolicy="no-referrer">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <title>WebGIS-Service</title>
 
     <!-- Leaflet BetterFileLayer -->
@@ -38,9 +38,9 @@
     <script src="/prueba_capas/intrusión_marina.js"></script>
 
 </head>
-
+<body>
     <!--===================================================
-                        LAYER CONTROL               
+                        MENÚ PRINCIPAL               
     ===================================================-->
     <nav class="nav">
         <nav class="nav_container">
@@ -53,10 +53,29 @@
             </a>
         </nav>
     </nav>
-    <div class="map-assets">
-        <!--===================================================
+    <!--===================================================
+                        MENÚ DE NAVEGACIÓN              
+    ===================================================-->
+    <input type="checkbox" name="" id="check_menu">
+    <div class="container">
+        <level for="check_menu">
+            <span class="fas fa-times" id="times"></span>
+            <span class="fas fa-bars" id="bars"></span>
+        </level>
+        <div class="head">menu</div>
+        <ol>
+            <li><a href="#"><i class="fas fa-qrcode">Mapas</i></a></li>
+            <li><a href="#"><i class="fas fa-users">Servicios</i></a></li>
+            <li><a href="#"><i class="fas fa-arrow-up">Publicar</i></a></li>
+            <li><a href="#"><i class="fas fa-envelope">Contactanos</i></a></li>
+            <li><a href="#"><i class="fas fa-info">Info</i></a></li>
+        </ol>
+    </div>
+
+    <!--===================================================
                         TOGGLE MENÚ               
-        ===================================================-->
+    ===================================================-->
+    <div class="map-assets">
         <div class="menu-toggle">
             <div class="menu">
                 <div class="toggle"><ion-icon name="add-outline"></ion-icon></div>
@@ -277,13 +296,20 @@
                 <!---------- COLOR PALETTE ASSET ------------>
                 <div class="color-control_popup" id="color-control-popup">
                     <p>Selecciona un color</p>
-                    <ul>
-                        <li class="color-item active" id="red"></li>
-                        <li class="color-item active" id="green"></li>
-                        <li class="color-item active" id="blue"></li>
-                        <li class="color-item active" id="yellow"></li>
-                        <li class="color-item active" id="purple"></li>
-                    </ul>
+                    <div class="styles_container">
+                        <div class="color_container">
+                            <input type="color" value="#ee1f1f" id="style1"/>
+                            <label for="style1">Estilo 1</label>
+                        </div>
+                        <div class="color_container">
+                            <input type="color" value="#3482f0" id="style2"/>
+                            <label for="style2">Estilo 2</label>
+                        </div>
+                        <div class="color_container">
+                            <input type="color" value="#43da86" id="style3"/>
+                            <label for="style3">Estilo 3</label>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -306,7 +332,6 @@
     <section id="map" class="draw-cursor-enabled">
         <div class="frame-map"></div>
     </section>
-</div>
 </body>
 <script src="ControlLayer.js"></script>
 <script src="curcular_menu/circular_menu.js"></script>
