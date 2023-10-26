@@ -92,7 +92,7 @@
                     <a href="#" id= "drawing-icon" class="active-option"><ion-icon name="brush-outline"></ion-icon></a>
                 </li>
                 <li style="--i:4;">
-                    <a href="#" class="palette-icon"><ion-icon name="color-palette-outline"></ion-icon></a>
+                    <a href="#" id="color-palette-icon" class="palette-icon"><ion-icon name="color-palette-outline"></ion-icon></a>
                 </li>
                 <li style="--i:5;">
                     <a href="#" class="active-option"><ion-icon name="options-outline"></ion-icon></a>
@@ -294,8 +294,8 @@
                     </div>
                 </div>
                 <!---------- COLOR PALETTE ASSET ------------>
-                <div class="color-control_popup" id="color-control-popup">
-                    <p>Selecciona un color</p>
+                <div class="color-control_popup hidden" id="color-control-popup">
+                    <p>Selecciona un estilo</p>
                     <div class="styles_container">
                         <div class="color_container">
                             <input type="color" value="#ee1f1f" id="style1"/>
@@ -309,6 +309,10 @@
                             <input type="color" value="#43da86" id="style3"/>
                             <label for="style3">Estilo 3</label>
                         </div>
+                    </div>
+                    <div class="toggle_slider">
+                        <span>Transparencia</span>
+                        <input type="range" id="opacity-slider" min="0" max="1" step="0.1" value="1">
                     </div>
                 </div>
             </div>

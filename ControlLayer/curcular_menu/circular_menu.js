@@ -76,3 +76,17 @@ toggle.onclick = function(){
             uiExpandIcon.classList.add("hidden");
         }
     });
+
+    //------------------------------------------- BOTÓN PARA ESCONDER EL COLOR-PALETTE CONTRROL A TRAVÉS DEL CIRCULAR MENÚ-------------------------------------------------------/
+    document.addEventListener("DOMContentLoaded", function() {
+        const colorPaletteIcon = document.getElementById("color-palette-icon");
+        const colorControlPopup = document.getElementById("color-control-popup");
+    
+        colorPaletteIcon.addEventListener("click", function() {
+            if (colorControlPopup.classList.contains("hidden")) {
+                colorControlPopup.classList.remove("hidden");
+            } else {
+                colorControlPopup.classList.add("hidden");
+            }
+        });
+    });

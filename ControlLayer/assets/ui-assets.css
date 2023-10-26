@@ -514,9 +514,13 @@
     flex-direction: column;
 }
 
+.color-control_popup.hidden {
+    display: none;
+}
+
 .color-control_popup p {
     position: relative;
-    top: -50px;
+    top: -30px;
     text-transform: uppercase;
     font-size: 10px;
     letter-spacing: 1px;
@@ -527,7 +531,7 @@
 
 .styles_container {
     position: relative;
-    top: -40px;
+    top: -15px;
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(3, 1fr);
@@ -544,6 +548,11 @@
     padding-bottom: 5px;
     background-color: rgb(41, 41, 41);
     cursor: pointer;
+}
+
+.color_container:hover {
+    background-color: rgb(150, 150, 150);
+    color: white;
 }
 
 label {
@@ -609,4 +618,35 @@ label {
 
 #style3::-moz-color-swatch{
     border-radius: 50%;
+}
+
+/*------- TRANSPARENCY CONTROLLER --------*/
+.toggle_slider {
+    display:flex;
+    position: relative;
+    text-align: center;
+    height: 50px;
+    width: 180px;
+}
+
+.toggle_slider span {
+    position:fixed;
+    display: block;
+    margin: 10px 40px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-style: italic;
+
+}
+
+#opacity-slider {
+    display: flex;
+    position: relative;
+    margin-top: 35px;
+    height: 7px;
+    width: 160px;
+    margin-left: 10px;
 }
