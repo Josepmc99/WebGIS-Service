@@ -28,3 +28,13 @@ WebGIS-Service_v.0.4.4
   - Errors correction
 WebGIS-Service_v.0.4.5
   - Stable version of WebGIS-Service
+WebGIS-Service_v.0.4.6
+  - Asset Color Palette Control
+WebGIS-Service_v.0.4.6
+ - Ajustments in Color Palette Control
+WebGIS-Service_v.0.4.7
+ - Ajustments in Color Palette Control
+ - Added Transparency layer toggle
+WebGIS-Service_v.0.4.8
+ - Ajustments in Color Palette Control
+ - Ajustments in Transparency layer toggle
