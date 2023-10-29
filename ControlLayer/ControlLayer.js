@@ -7,6 +7,17 @@ document.addEventListener("DOMContentLoaded", function () {
         maxZoom: 29,
     }).addTo(mymap);
 
+     //----------------------------------------------- MENÚ PRINCIPAL -----------------------------------------------------------/
+
+     document.getElementById("bars").addEventListener("click", function() {
+        // Cuando se hace clic en el ícono, alterna el estado del checkbox
+        document.getElementById("check_menu").checked = !document.getElementById("check_menu").checked;
+    });
+    document.getElementById("times").addEventListener("click", function() {
+        // Cuando se hace clic en el ícono, alterna el estado del checkbox
+        document.getElementById("check_menu").checked = !document.getElementById("check_menu").checked;
+    });
+
  //------------------------------------------- BOTÓN PARA AÑADIR MARCADORES A TRAVÉS DEL CIRCULAR MENÚ-------------------------------------------------------/
 
                 // Variable global para rastrear el estado de activación de la función de añadir marcadores
@@ -604,11 +615,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const DrawingButton = document.getElementById("drawing-icon");
     let drawingActive = false; // Variable para controlar si la capacidad de dibujo está activa
 
+    // Agrega la clase 'active' al botón de dibujo inicialmente para desactivar la herramienta
+    DrawingButton.classList.add("active");
+
     // Agrega un evento de clic al botón de dibujo
     DrawingButton.addEventListener("click", function () {
-        // Alterna la clase 'active' en el botón para mostrar u ocultar
-        DrawingButton.classList.toggle("active");
-
         // Actualiza el estado de la variable drawingActive
         drawingActive = !drawingActive;
 
@@ -627,18 +638,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let drawingMode = null; // Variable para almacenar el polígono dibujado
     let drawingContainer = document.createElement('div'); // Crea un div contenedor
-    const drawnPolygons = [];
 
     function startDrawingPolygon(e) {
-        if (drawingMode === null) {
-            drawingMode = L.polygon([e.latlng], { color: 'blue' }).addTo(mymap);
-            // Agrega el polígono al array de polígonos dibujados
-            drawnPolygons.push(drawingMode);
+        if (drawingActive) {
+            if (drawingMode === null) {
+                drawingMode = L.polygon([e.latlng], { color: 'yellow' }).addTo(mymap);
+                // Agrega el polígono al array de polígonos dibujados
+                drawnPolygons.push(drawingMode);
     
-            // Agrega el div del polígono al contenedor
-            drawingContainer.appendChild(polygonDiv);
-        } else {
-            drawingMode.addLatLng(e.latlng);
+                // Agrega el div del polígono al contenedor
+                drawingContainer.appendChild(polygonDiv);
+            } else {
+                drawingMode.addLatLng(e.latlng);
+            }
         }
     }
 
@@ -655,7 +667,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (drawingActive) {
                 // Reactivar la capacidad de dibujar un nuevo polígono
                 mymap.on('click', startDrawingPolygon);
-                mymap.on('dblclick', finishDrawingPolygon);
             }
         }
     }
@@ -664,62 +675,107 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(drawingContainer);
 
     //------------------------------------------- COLOR PALETTE ASSET -------------------------------------------------------/
-    const colorItems = document.querySelectorAll('.color-item');
+    const drawnPolygonsLayer = new L.FeatureGroup().addTo(mymap); //Agrupa los poligonos dibujados en una sola capa
+    const colorContainers = document.querySelectorAll('.color_container');
+    const drawnPolygons = [];
 
-    // Agrega un evento de clic a los elementos de color en el menú
-    colorItems.forEach(item => {
-        item.addEventListener('click', function () {
-            const idSelected = this.id;
+    colorContainers.forEach(container => {
+        container.addEventListener('click', function () {
+            const colorInput = this.querySelector('input[type="color"]');
+            const selectedColor = colorInput.value;
 
-            // Cambia el color del polígono en proceso de dibujo (si lo hay)
-            if (drawingMode) {
-                drawingMode.setStyle({ color: idSelected });
-            } else {
-                // Cambia el color de los polígonos existentes
-                for (const polygon in drawnPolygons) {
-                    drawnPolygons[polygon].setStyle({ color: idSelected });
-                }
+            if (selectedPolygon) {
+                selectedPolygon.setStyle({ color: selectedColor });
             }
         });
     });
 
-    // Agrega un evento de doble clic para completar el dibujo de un polígono
-    mymap.on('dblclick', function (e) {
-        if (drawingMode) {
-            mymap.off('click', startDrawingPolygon);
-            mymap.off('dblclick', finishDrawingPolygon);
-            drawnPolygons[drawingMode] = drawingMode; // Almacena el polígono y su color
-            drawingMode = null; // Restablece la variable de dibujo
-        }
-    });
+    let selectedPolygon = null; // Variable para el polígono seleccionado
 
-    // Agrega un evento de clic para iniciar el dibujo de un polígono
-    mymap.on('click', startDrawingPolygon);
-    function startDrawingPolygon(e) {
-        if (drawingMode === null) {
-            drawingMode = L.polygon([e.latlng], { color: 'blue' }).addTo(mymap);
-        } else {
-            drawingMode.addLatLng(e.latlng);
-        }
-    }
-
-    // Agrega un evento de doble clic para finalizar el dibujo de un polígono
-    mymap.on('dblclick', finishDrawingPolygon);
     function finishDrawingPolygon(e) {
         if (drawingMode) {
             mymap.off('click', startDrawingPolygon);
             mymap.off('dblclick', finishDrawingPolygon);
-            drawnPolygons[drawingMode] = drawingMode; // Almacena el polígono y su color
-            drawingMode = null; // Restablece la variable de dibujo
+
+            const newPolygon = drawingMode;
+            drawnPolygons.push(newPolygon);
+
+            // Agrega el polígono al mapa y a la lista de polígonos dibujados
+            drawnPolygonsLayer.addLayer(newPolygon);
+            newPolygon.addTo(mymap);
+
+            selectedPolygon = newPolygon;
+            drawingMode = null;
         }
     }
 
-    document.getElementById("bars").addEventListener("click", function() {
-        // Cuando se hace clic en el ícono, alterna el estado del checkbox
-        document.getElementById("check_menu").checked = !document.getElementById("check_menu").checked;
+    // Agrega un evento de clic para cambiar el color de un polígono
+    drawnPolygonsLayer.on('click', function (e) {
+        const clickedPolygon = e.layer;
+        selectedPolygon = clickedPolygon;
+
+        // Abre la paleta de colores al clicar en un poligono
+        document.getElementById('color-control-popup').classList.remove('hidden');
     });
-    document.getElementById("times").addEventListener("click", function() {
-        // Cuando se hace clic en el ícono, alterna el estado del checkbox
-        document.getElementById("check_menu").checked = !document.getElementById("check_menu").checked;
+
+    //------------------- COLOR DE TRANSPARENCIA ---------------------/
+    // Agregar un evento de cambio al control deslizante de opacidad
+    document.getElementById('opacity-slider').addEventListener('input', function (e) {
+        const opacityValue = parseFloat(e.target.value); // Obtener el valor de opacidad
+        if (selectedPolygon) {
+            selectedPolygon.setStyle({ 
+                fillOpacity: opacityValue, // Opacidad del relleno
+                opacity: opacityValue,       // Opacidad del borde
+            });
+        }
     });
+
+    //------------------- ADD NEW DRAWED POLYGONS EN EL CONTROL LAYER COMO CAPA NUEVA ---------------------/
+    const addPolygonsLayer = L.layerGroup().addTo(mymap);
+    //El drawPoligonsLayer está definido más arriba, es para agrupar los poligonos dibujados en una sola capa
+    drawnPolygons.forEach((polygon, index) => {
+        const subGroupName = `Subcapa${index + 1}`;
+        addPolygonsLayer.addLayer(polygon);
+        // Aquí puedes agregar el polígono como subgrupo con el nombre subGroupName
+        mymap.addControl(
+            L.control.layers({}, { [subGroupName]: polygon }, { collapsed: false })
+        );
+    });
+
+    //------------------- DROP-FILE FUNCTION ---------------------/
+    function loadKMLFile(kml) {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(kml, 'text/xml');
+        
+        const geojson = toGeoJSON.kml(xmlDoc);
+        
+        L.geoJSON(geojson).addTo(map);
+        
+        map.fitBounds(L.geoJSON(geojson).getBounds());
+    }
+    
+    function handleDrop(e) {
+        e.preventDefault();
+        const files = e.dataTransfer.files;
+    
+        for (const file of files) {
+            if (file.type === 'application/vnd.google-earth.kml+xml') {
+                const reader = new FileReader();
+    
+                reader.onload = function (e) {
+                    loadKMLFile(e.target.result);
+                };
+    
+                reader.readAsText(file);
+            } else {
+                alert("No es un archivo KML válido.");
+            }
+        }
+    }
+    
+    const dropArea = document.getElementById('map');
+    dropArea.addEventListener('dragover', (e) => e.preventDefault());
+    dropArea.addEventListener('dragenter', (e) => e.preventDefault());
+    dropArea.addEventListener('drop', handleDrop);
+   
 });

@@ -58,47 +58,27 @@ function loadGeoJSONorKMLString(geoString) {
 
 // Modifica la función processFile para cargar archivos GeoJSON o KML
 function processFile(file) {
-    const docType = file.type;
-  
-    // Definir las extensiones válidas (GeoJSON y KML)
-    const validExtensions = ['application/geo+json'];
-  
-    if (validExtensions.indexOf(docType) !== -1) {
-      // Archivo válido
+  // Verifica si el tipo de archivo es válido
+  if (isValidFileType(file)) {
       const fileReader = new FileReader();
-  
+
       fileReader.addEventListener('load', (e) => {
-        const fileContent = fileReader.result;
-  
-        // Carga el archivo GeoJSON o KML en el mapa
-        loadGeoJSONorKMLString(fileContent);
+          const fileContent = fileReader.result;
+
+          // Carga el archivo GeoJSON o KML en el mapa
+          loadGeoJSONorKMLString(fileContent);
       });
-  
+
       fileReader.readAsText(file);
-    } else {
+  } else {
       alert("No es un archivo GeoJSON o KML válido.");
-    }
   }
-
-
-async function uploadFile(file, id) {
-    const formData = new FormData();
-    formData.append("file", file);
-
-    try {
-        const response = await fetch('http://localhost:8080/geoserver/Costas/file.geojson', {
-          method: "POST",
-          body: formData,
-      });
-
-        const responseText = await response.text();
-        console.log(responseText);
-
-        document.querySelector(`#${id} .status-text`
-        ).innerHTML = `<span class="success">Archivo subido correctamente ...</span>`
-    } catch (error) {
-        document.querySelector(`#${id} .status-text`
-        ).innerHTML = `<span class="failure">El archivo no pudo subirse ...</span>`
-    }
 }
+
+// Verifica si el tipo de archivo es válido (GeoJSON o KML)
+function isValidFileType(file) {
+  const validExtensions = ['application/geo+json', 'application/vnd.google-earth.kml+xml'];
+  return validExtensions.includes(file.type);
+}
+
 
