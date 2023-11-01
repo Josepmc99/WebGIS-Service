@@ -659,6 +659,10 @@ label {
     z-index: 999;
 }
 
+.share-menu.hidden {
+    display: none;
+}
+
 .share {
     position:relative;
     padding: 1rem;

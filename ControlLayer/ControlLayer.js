@@ -781,26 +781,16 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
  //------------------------------------------- SHARE/ADD PERMISION A TRAVÉS DEL CIRCULAR MENÚ-------------------------------------------------------/
- const share = document.querySelector('.share');
- const openShare = document.getElementById('share-icon');
- const closeShare = document.querySelector('.submit');
+ document.addEventListener("DOMContentLoaded", function() {
+    const sharePopup = document.querySelector('.share-menu');
+    const shareIcon = document.getElementById('share-icon');
+    const closeShare = document.querySelector('.submit');
 
- openShare.addEventListener('click', () => {
-    share.show();
- })
-
-closeShare.addEventListener('click', () => {
-    if (share.style.display === 'block') {
-        share.style.display = 'none';
-    } else {
-        share.style.display = 'block';
-    }
-})
-
-openShare.addEventListener('click', () => {
-    if (share.style.display === 'block') {
-        share.style.display = 'none';
-    } else {
-        share.style.display = 'block';
-    }
+    shareIcon.addEventListener("click", function() {
+        if (sharePopup.classList.contains("hidden")) {
+            sharePopup.classList.remove("hidden");
+        } else {
+            sharePopup.classList.add("hidden");
+        }
+    });
 });
