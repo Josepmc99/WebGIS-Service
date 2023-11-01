@@ -779,3 +779,28 @@ document.addEventListener("DOMContentLoaded", function () {
     dropArea.addEventListener('drop', handleDrop);
    
 });
+
+ //------------------------------------------- SHARE/ADD PERMISION A TRAVÉS DEL CIRCULAR MENÚ-------------------------------------------------------/
+ const share = document.querySelector('.share');
+ const openShare = document.getElementById('share-icon');
+ const closeShare = document.querySelector('.submit');
+
+ openShare.addEventListener('click', () => {
+    share.show();
+ })
+
+closeShare.addEventListener('click', () => {
+    if (share.style.display === 'block') {
+        share.style.display = 'none';
+    } else {
+        share.style.display = 'block';
+    }
+})
+
+openShare.addEventListener('click', () => {
+    if (share.style.display === 'block') {
+        share.style.display = 'none';
+    } else {
+        share.style.display = 'block';
+    }
+});

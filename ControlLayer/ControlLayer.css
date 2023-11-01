@@ -199,9 +199,9 @@ input#check_menu:checked {
 /*-------- MAPA ---------*/
 #map{
     margin-top: -10px;
-    height: 92vh;
+    height: 94.5%;
     width: 100%;
-    position: relative;
+    position: fixed;
     z-index: 1;
 }
 .leaflet-control-zoom.leaflet-bar.leaflet-control{

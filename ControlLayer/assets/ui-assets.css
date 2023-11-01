@@ -497,13 +497,13 @@
                 inset 0 -4px 4px rgba(255, 255, 255, 1);
 }
 
-/*--------------------- ASSET CONTOL LAYER ----------------*/
+/*--------------------- ASSET COLOR CONTROL LAYER ----------------*/
 .color-control_popup {
-    position: absolute;
+    position: fixed;
     width: 200px;
     height: 200px;
-    bottom: -200px;
-    right: 20px; 
+    bottom: 250px;
+    right: 5px; 
     color: white;
     background-color: rgb(20, 20, 20);
     border-radius: 10px;
@@ -649,4 +649,104 @@ label {
     height: 7px;
     width: 160px;
     margin-left: 10px;
+}
+
+/*--------------------- SHARE/PERMISION ASSET ----------------*/
+.share-menu {
+    position: fixed;
+    right: 260px;
+    bottom: 15px;
+    z-index: 999;
+}
+
+.share {
+    position:relative;
+    padding: 1rem;
+    max-width: 30ch;
+    text-align: justify;
+    border: 0;
+    box-shadow: 0 0 1em rgb(0, 0, 0 /.3);
+    border-radius: 15px;
+    background-color: rgb(20, 20, 20);
+}
+
+.share-popup {
+    position: relative;
+    background-color: #383838;
+    border-radius: 15px 15px 0 0;
+    left: -15px;
+    width: 266px;
+}
+
+.share h2 {
+    position: relative;
+    display: grid;
+    background-color: rgb(41, 41, 41);
+    border-radius: 15px 15px 0 0;
+    top: -15px;
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+    text-transform: uppercase;
+    text-align: center;
+    align-items: center;
+    font-size: 15px;
+    height: 40px;
+    width: 265px;
+}
+
+.share p {
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    border-radius: 15px;
+    padding: 0 20px 15px 20px;
+}
+
+.share label {
+    position: relative;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    font-style: italic;
+    left: 15px;
+}
+
+.share input {
+    position: relative;
+    display: flex;
+    height: 20px;
+    width: 80%;
+    border-style: none;
+    border-radius: 3px;
+    top: 10px;
+    left: 13px;
+}
+
+.share button {
+    position: relative;
+    display: grid;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    color: white;
+    background-color: #222;
+    border-radius: 0 0 15px 15px;
+    width: 267px;
+    height: 30px;
+    top: 25px;
+    left: -1px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.share button:hover {
+    background-color: black;
+    color: #36f3ab;
+    letter-spacing: 2px;
 }
